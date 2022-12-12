@@ -1,1 +1,1 @@
-# app python + django
+# purchases auth
