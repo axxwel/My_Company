@@ -4,9 +4,22 @@ python django applications
 
 ## Install
 
-Clone repository
-add python env
-add django lybrary
+1. Clone repository
+```
+git clone https://github.com/axxwel/django_app.git
+```
+
+2. install and start python environment
+```
+cd ../django_app/
+python3 -m venv env
+source env/bin/activate
+```
+
+3. install django framework
+```
+pip install django
+```
 
 ## Application
 
