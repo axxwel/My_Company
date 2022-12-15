@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from purchases_auth.models import Datas
+from purchases_auth.models import Auth_datas
 
 def hello(request):
-    datas = Datas.objects.all()
+    auth_datas = Auth_datas.objects.all()
     return render(request,
     'purchases_auth/hello.html',
-    {'datas': datas})
+    {'auth_datas': auth_datas})
 
 def about(request):
     return HttpResponse('<h1>About apps</h1>')
