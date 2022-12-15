@@ -1,0 +1,10 @@
+{% extends 'purchases_auth/base.html' %}
+
+{% block list %}
+<p>Liste :</p>
+<ul>
+    {% for data in datas %}
+    <li>{{ data.name }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
