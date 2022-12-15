@@ -1,12 +1,19 @@
 {% load static %}
-
 <html>
     <head>
-        <title>Purchases_auth</title></head>
+        <meta charset="utf-8" />
+        <title>Purchases_auth</title>
         <link rel="stylesheet" href="{% static 'purchases_auth/styles.css' %}" />
+    </head>
     <body>
-        <h1>Purchases_auth</h1>
+        <header>
+            <h1>Purchases authorization</h1>
+        </header>
+        
         {% block list %}{% endblock %}
-
+        
+        <footer>
+        
+       </footer>
     </body>
 </html>
