@@ -15,14 +15,15 @@ class Auth_datas(models.Model):
         return f'{self.name}'
 
     class auth_status(models.TextChoices):
-        AUTHORIZED = 'AUTHORIZED'
-        REFUSED = 'REFUSED'
-        PENDING = 'PENDING'
+        AUTHORIZED = 'Authorized'
+        REFUSED = 'Refused'
+        PENDING = 'Pending'
 
     name = models.fields.CharField(max_length=30, unique=True)
     date = models.fields.DateTimeField(auto_now=True)
-    asker_login = models.fields.CharField(max_length=30)#models.ForeignKey(Users, null=False, on_delete=models.SET_DEFAULT)
-    controler_login = models.fields.CharField(max_length=30)#models.ForeignKey(Users, null=False, on_delete=models.SET_DEFAULT)
+    user_login = models.ForeignKey(Auth_users, null=True, on_delete=models.SET_NULL)
+    asker_login = models.fields.CharField(max_length=30)
+    controler_login = models.fields.CharField(max_length=30)
     controler_auth = models.fields.CharField(choices=auth_status.choices, default=auth_status.PENDING, max_length=10)
 
 '''

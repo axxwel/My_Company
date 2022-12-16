@@ -19,6 +19,8 @@ from purchases_auth import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', views.hello),
+    path('order/', views.order_list, name='order-list'),
+    path('order/<int:id>/', views.order_detail, name='order-detail'),
+    path('order/add/', views.order_create, name='order-create'),
     path('about/', views.about),
 ]

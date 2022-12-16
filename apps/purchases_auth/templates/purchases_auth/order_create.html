@@ -1,0 +1,10 @@
+{% extends 'purchases_auth/base.html' %}
+
+{% block content %}
+<h2>add new order</h2>
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ order_form.as_p }}
+    <input type="submit" value="Add order">
+</form>
+{% endblock %}
