@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from purchases_auth.models import Auth_datas
@@ -21,9 +21,7 @@ def order_create(request):
         order_form = Order_form(request.POST)
         if order_form.is_valid():
             auth_datas = order_form.save()
-
-            #Redirection problem._____________________________________________________
-            return HttpResponse('order-detail', auth_datas.id)
+            return redirect('order-detail', auth_datas.id)
     else:
         order_form = Order_form()
 
