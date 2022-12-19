@@ -1,10 +1,10 @@
 from django import forms
 
-from purchases_auth.models import Auth_datas
+from purchases_auth.models import Order
 
 class Order_form(forms.ModelForm):
     class Meta:
-        model = Auth_datas
+        model = Order
         #fields = '__all__'
         exclude = ('controler_login', 'controler_auth')
     

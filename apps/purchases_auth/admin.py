@@ -1,14 +1,34 @@
 from django.contrib import admin
 
-from purchases_auth.models import Auth_datas
-from purchases_auth.models import Auth_users
+""" from purchases_auth.models import Payment_method
+from purchases_auth.models import Purchase_type
+from purchases_auth.models import Branch
+from purchases_auth.models import Process
+from purchases_auth.models import Threshold
+from purchases_auth.models import Order
 
 
-class UsersAdmin(admin.ModelAdmin):
-    list_display = ('login', 'first_name', 'name')
+class Payment_method_admin(admin.ModelAdmin):
+    list_display = ('name')
 
-class DatasAdmin(admin.ModelAdmin):
+class Purchase_type_admin(admin.ModelAdmin):
+    list_display = ('name')
+
+class Branch_admin(admin.ModelAdmin):
+    list_display = ('name', 'controler_login')
+    
+class Process_admin(admin.ModelAdmin):
     list_display = ('id', 'name', 'date', 'asker_login', 'controler_login', 'controler_auth')
+    
+class Threshold_admin(admin.ModelAdmin):
+    list_display = ('name', 'threshold_1', 'threshold_2', 'threshold_3', 'controler', 'controler_auth')
+    
+class Order_admin(admin.ModelAdmin):
+    list_display = ('order_id', 'date', 'asker_login', 'controler_login', 'controler_auth')
 
-admin.site.register(Auth_users, UsersAdmin)
-admin.site.register(Auth_datas, DatasAdmin)
+admin.site.register(Payment_method, Payment_method_admin)
+admin.site.register(Purchase_type, Purchase_type_admin)
+admin.site.register(Branch, Branch_admin)
+admin.site.register(Process, Process_admin)
+admin.site.register(Threshold, Threshold_admin)
+admin.site.register(Order, Order_admin) """

@@ -4,14 +4,14 @@
 <a href="{% url 'order-create' %}">new order</a>
 <p>Pending for your authorization</p>
     <ul>
-        {% for auth_data in auth_datas %}
+        {% for auth_data in order %}
         <li><a href="{% url 'order-detail' auth_data.id %}">{{ auth_data.name }}</a></li>
         {% endfor %}
     </ul>
 
 <p>Your permission requested</p>
     <ul>
-        {% for auth_data in auth_datas %}
+        {% for auth_data in order %}
         <li><a href="{% url 'order-detail' auth_data.id %}">{{ auth_data.name }}</a></li>
         {% endfor %}
     </ul>

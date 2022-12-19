@@ -1,12 +1,12 @@
 {% extends 'purchases_auth/base.html' %}
 
 {% block content %}
-<h2>{{ auth_datas.name }}</h2>
+<h2>{{ order.name }}</h2>
 
 <ul>
-    <li>Asker login : {{ auth_datas.asker_login }}</li>
-    <li>controler login : {{ auth_datas.controler_login }}</li>
-    <li>controler auth : {{ auth_datas.get_controler_auth_display }}</li>
+    <li>Asker login : {{ order.asker_login }}</li>
+    <li>controler login : {{ order.controler_login }}</li>
+    <li>controler auth : {{ order.get_controler_auth_display }}</li>
 </ul>
 <a href="{% url 'order-list' %}">Retour</a>
 {% endblock %}

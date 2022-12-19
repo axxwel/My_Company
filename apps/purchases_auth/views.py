@@ -1,29 +1,29 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from purchases_auth.models import Auth_datas
+from purchases_auth.models import Order
 from purchases_auth.forms import Order_form
 
 def order_list(request):
-    auth_datas = Auth_datas.objects.all()
+    order = Order.objects.all()
     return render(request,
     'purchases_auth/order.html',
-    {'auth_datas': auth_datas})
+    {'order': order})
 
 def order_detail(request, id):
-    auth_datas = Auth_datas.objects.get(id=id)
+    order = Order.objects.get(id=id)
     return render(request,
     'purchases_auth/order_detail.html',
-    {'auth_datas':auth_datas})
+    {'order':order})
 
 def order_create(request):
     if request.method == 'POST':
         order_form = Order_form(request.POST)
         if order_form.is_valid():
-            auth_datas = order_form.save()
+            order = order_form.save()
 
             #Redirection problem._____________________________________________________
-            return HttpResponse('order-detail', auth_datas.id)
+            return HttpResponse('order-detail', order.id)
     else:
         order_form = Order_form()
 
