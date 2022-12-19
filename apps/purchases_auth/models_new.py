@@ -4,7 +4,7 @@ from django.db import models
 
 class payment_method(models.Model):
     def __str__(self):
-        return f'{self.login}'
+        return f'{self.name}'
     name = models.fields.CharField(max_length=30, unique=True)
 
 class Purchase_type(models.Model):
