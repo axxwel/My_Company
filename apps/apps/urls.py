@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
+import authentification.views
 from purchases_auth import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', authentification.views.login_pages , name='login'),
+    path('logout/', authentification.views.logout_user, name='logout'),
     path('order/', views.order_list, name='order-list'),
     path('order/<int:id>/', views.order_detail, name='order-detail'),
     path('order/add/', views.order_create, name='order-create'),

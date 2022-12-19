@@ -1,7 +1,8 @@
-{% extends 'purchases_auth/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <h2>add new order</h2>
+<a href="{% url 'order-list' %}">Retour</a>
 <form action="" method="post">
     {% csrf_token %}
     {{ order_form.as_p }}

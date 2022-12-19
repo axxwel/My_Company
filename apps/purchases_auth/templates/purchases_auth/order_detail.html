@@ -1,12 +1,11 @@
-{% extends 'purchases_auth/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 <h2>{{ order.name }}</h2>
-
+<a href="{% url 'order-list' %}">Retour</a>
 <ul>
     <li>Asker login : {{ order.asker_login }}</li>
     <li>controler login : {{ order.controler_login }}</li>
     <li>controler auth : {{ order.get_controler_auth_display }}</li>
 </ul>
-<a href="{% url 'order-list' %}">Retour</a>
 {% endblock %}

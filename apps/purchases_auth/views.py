@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from purchases_auth.models import Order
 from purchases_auth.forms import Order_form
 
+
 def order_list(request):
     order = Order.objects.all()
     return render(request,
