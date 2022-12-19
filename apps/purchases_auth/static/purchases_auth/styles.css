@@ -5,12 +5,12 @@
 
 /*header*/
 header{
-	background: black ;
+	background: #384960 ;
 	height: 4em;
 }
 header h1{
-    background: black ;
-    color: white;S
+    background: #384960 ;
+    color: white;
 }
 
 p{

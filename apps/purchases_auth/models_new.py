@@ -1,5 +1,5 @@
 from datetime import datetime
-Ò
+
 from django.db import models
 
 class payment_method(models.Model):
@@ -11,25 +11,7 @@ class Purchase_type(models.Model):
     def __str__(self):
         return f'{self.name}'
     name = models.fields.CharField(max_length=30, unique=True)
-
-class Branch(models.Model):
-    def __str__(self):
-        return f'{self.name}'
-    name = models.fields.CharField(max_length=30, unique=True)
-
-class Process(models.Model):
-    def __str__(self):
-        return f'{self.name}'
-    name = models.fields.CharField(max_length=30, unique=True)
-    Branch = models.ForeignKey(Branch, null=True, on_delete=models.SET_NULL)
-    threshold_1 = models.fields.IntegerField()
-    threshold_2 = models.fields.IntegerField()
-    threshold_3 = models.fields.IntegerField()
-    controler_login_level_1 = models.ForeignKey(Process, null=True, on_delete=models.SET_NULL)
-    controler_login_level_2 = models.ForeignKey(Process, null=True, on_delete=models.SET_NULL)
-    controler_login_level_3 = models.ForeignKey(Process, null=True, on_delete=models.SET_NULL)
-    controler_login_level_4 = models.ForeignKey(Process, null=True, on_delete=models.SET_NULL)
-
+    
 class User(models.Model):
     def __str__(self):
         return f'{self.login}'
@@ -39,8 +21,29 @@ class User(models.Model):
     password = models.fields.CharField(max_length=50)
     email = models.fields.EmailField(max_length=100)
 
-    branch_a = models.ForeignKey(Branch, null=True, on_delete=models.SET_NULL)
-    branch_b = models.ForeignKey(Branch, null=True, on_delete=models.SET_NULL)
+class Branch(models.Model):
+    def __str__(self):
+        return f'{self.name}'
+    name = models.fields.CharField(max_length=30, unique=True)
+    controler_login = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+
+class Process(models.Model):
+    def __str__(self):
+        return f'{self.name}'
+    name = models.fields.CharField(max_length=30, unique=True)
+    Branch = models.ForeignKey(Branch, null=True, on_delete=models.SET_NULL)
+    controler_login = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+
+class Threshold(models.Model):
+    def __str__(self):
+        return f'{self.name}'
+    name = models.fields.CharField(max_length=30, unique=True)
+    threshold_1 = models.fields.IntegerField()
+    threshold_2 = models.fields.IntegerField()
+    threshold_3 = models.fields.IntegerField()
+
+    controler = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    super_controler = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
 class Order(models.Model):
     def __str__(self):
