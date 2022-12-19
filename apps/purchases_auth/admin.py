@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-""" from purchases_auth.models import Payment_method
+from purchases_auth.models import Payment_method
 from purchases_auth.models import Purchase_type
 from purchases_auth.models import Branch
 from purchases_auth.models import Process
@@ -31,4 +31,4 @@ admin.site.register(Purchase_type, Purchase_type_admin)
 admin.site.register(Branch, Branch_admin)
 admin.site.register(Process, Process_admin)
 admin.site.register(Threshold, Threshold_admin)
-admin.site.register(Order, Order_admin) """
+admin.site.register(Order, Order_admin)
