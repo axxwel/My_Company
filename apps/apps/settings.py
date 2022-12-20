@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentification',
+    'authentication',
     'purchases_auth',
 ]
 
@@ -56,6 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            BASE_DIR.joinpath('static'),
             BASE_DIR.joinpath('templates'),
         ],
         'APP_DIRS': True,
@@ -126,5 +127,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Default authentifaction module
+AUTH_USER_MODEL = 'authentication.User'
 
-AUTH_USER_MODEL = 'authentification.User'
+# Default login url
+LOGIN_URL = 'login'
+
+# Default redirect url
+LOGIN_REDIRECT_URL = 'order-list'

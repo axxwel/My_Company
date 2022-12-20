@@ -2,18 +2,18 @@
 
 {% block content %}
 <a href="{% url 'order-create' %}">new order</a>
-<p>Pending for your authorization</p>
+<!-- <p>Pending for your authorization</p>
     <ul>
-        {% for order in order %}
-        <li><a href="{% url 'order-detail' auth_data.id %}">{{ order.name }}</a></li>
+        {% for order_asker in order %}
+        <li><a href="{% url 'order-detail' order_asker.id %}">{{ order_asker.name }}</a></li>
         {% endfor %}
     </ul>
 
 <p>Your permission requested</p>
     <ul>
-        {% for order in order %}
-        <li><a href="{% url 'order-detail' auth_data.id %}">{{ order.name }}</a></li>
+        {% for order_control in order %}
+        <li><a href="{% url 'order-detail' order_control.id %}">{{ order_control.name }}</a></li>
         {% endfor %}
-    </ul>
+    </ul> -->
 
 {% endblock %}

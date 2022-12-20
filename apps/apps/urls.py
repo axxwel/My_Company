@@ -16,15 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-import authentification.views
+import authentication.views
 from purchases_auth import views
 
 urlpatterns = [
+#Administration
     path('admin/', admin.site.urls),
-    path('', authentification.views.login_pages , name='login'),
-    path('logout/', authentification.views.logout_user, name='logout'),
+#Authentication
+    path('', authentication.views.LoginPageView.as_view() , name='login'),
+    path('signup/', authentication.views.signup_page, name='signup'),
+    path('logout/', authentication.views.logout_user, name='logout'),
+#Purchases_auth
     path('order/', views.order_list, name='order-list'),
     path('order/<int:id>/', views.order_detail, name='order-detail'),
     path('order/add/', views.order_create, name='order-create'),
-    path('about/', views.about),
 ]

@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.db import models
-from authentification.models import User
+from authentication.models import User
 
 class Payment_method(models.Model):
     def __str__(self):
@@ -34,7 +34,7 @@ class Threshold(models.Model):
     threshold_3 = models.fields.IntegerField()
 
     controler = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    #super_controler = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    super_controler = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='super')
 
 class Order(models.Model):
     def __str__(self):
@@ -61,11 +61,11 @@ class Order(models.Model):
 
     asker_comment = models.fields.CharField(max_length=254, null=True)
 
-    vendor = models.fields.CharField(max_length=17, unique=True)
+    vendor = models.fields.CharField(max_length=17)
     unit_price = models.fields.IntegerField()
     delivery_date = models.fields.DateTimeField()
 
-    #controler_login = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    #controler_login = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='controler')
 
     controler_auth = models.fields.CharField(choices=auth_status.choices, default=auth_status.PENDING, max_length=10)
     controler_comment = models.fields.CharField(max_length=254, null=True)
