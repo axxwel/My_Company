@@ -2,18 +2,30 @@
 
 {% block content %}
 <a href="{% url 'order-create' %}">new order</a>
-<!-- <p>Pending for your authorization</p>
-    <ul>
-        {% for order_asker in order %}
-        <li><a href="{% url 'order-detail' order_asker.id %}">{{ order_asker.name }}</a></li>
-        {% endfor %}
-    </ul>
 
-<p>Your permission requested</p>
-    <ul>
-        {% for order_control in order %}
-        <li><a href="{% url 'order-detail' order_control.id %}">{{ order_control.name }}</a></li>
-        {% endfor %}
-    </ul> -->
-
+    {% if controler_order %}
+    <p>Pending your authorization</p>
+    {% endif %}
+        <ul>
+            {% for controler_order in controler_order %}
+            <li><a href="{% url 'order-detail' controler_order.id %}">{{ controler_order.order_id }}</a>
+                {{ controler_order.product }}
+                {{ controler_order.controler_login }}
+                {{ controler_order.controler_auth }}
+            </li>
+            {% endfor %}
+        </ul>
+    
+    {% if asker_order %}
+    <p>Pending controler authorization</p>
+    {% endif %}
+        <ul>
+            {% for asker_order in asker_order %}
+            <li><a href="{% url 'order-detail' asker_order.id %}">{{ asker_order.order_id }}</a>
+                {{ asker_order.product }}
+                {{ asker_order.controler_login }}
+                {{ asker_order.authorisation }}
+            </li>
+            {% endfor %}
+        </ul>    
 {% endblock %}

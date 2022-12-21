@@ -1,5 +1,6 @@
-from datetime import datetime
 from django.db import models
+from django.conf import settings
+
 from authentication.models import User
 
 class Payment_method(models.Model):
@@ -12,18 +13,18 @@ class Purchase_type(models.Model):
         return f'{self.name}'
     name = models.fields.CharField(max_length=30, unique=True)
 
-class Branch(models.Model):
+class branch(models.Model):
     def __str__(self):
         return f'{self.name}'
     name = models.fields.CharField(max_length=30, unique=True)
-    controler_login = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    controler_login = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Process(models.Model):
     def __str__(self):
         return f'{self.name}'
     name = models.fields.CharField(max_length=30, unique=True)
-    Branch = models.ForeignKey(Branch, null=True, on_delete=models.SET_NULL)
-    controler_login = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    Branch = models.ForeignKey(branch, on_delete=models.CASCADE)
+    controler_login = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Threshold(models.Model):
     def __str__(self):
@@ -33,8 +34,10 @@ class Threshold(models.Model):
     threshold_2 = models.fields.IntegerField()
     threshold_3 = models.fields.IntegerField()
 
-    controler = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    super_controler = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='super')
+    controler = models.ForeignKey(User, on_delete=models.CASCADE)
+    super_controler = models.ForeignKey(User, on_delete=models.CASCADE, related_name='super')
+
+
 
 class Order(models.Model):
     def __str__(self):
@@ -48,24 +51,24 @@ class Order(models.Model):
     order_id = models.fields.CharField(max_length=17, unique=True)
     date = models.fields.DateTimeField(auto_now=True)
 
-    asker_login = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    asker_login = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     
-    purchase_type = models.ForeignKey(Purchase_type, null=True, on_delete=models.SET_NULL)
-    branch = models.ForeignKey(Branch, null=True, on_delete=models.SET_NULL)
-    process = models.ForeignKey(Process, null=True, on_delete=models.SET_NULL)
+    purchase_type = models.ForeignKey(Purchase_type, on_delete=models.CASCADE)
+    branch = models.ForeignKey(branch, on_delete=models.CASCADE)
+    process = models.ForeignKey(Process, on_delete=models.CASCADE)
 
-    payment_method = models.ForeignKey(Payment_method, null=True, on_delete=models.SET_NULL)
+    payment_method = models.ForeignKey(Payment_method, on_delete=models.CASCADE)
 
-    product = models.fields.CharField(max_length=17, unique=True)
+    product = models.fields.CharField(max_length=17)
     price = models.fields.IntegerField()
 
     asker_comment = models.fields.CharField(max_length=254, null=True)
 
     vendor = models.fields.CharField(max_length=17)
-    unit_price = models.fields.IntegerField()
-    delivery_date = models.fields.DateTimeField()
+    unit_price = models.fields.IntegerField(null=True)
+    delivery_date = models.fields.DateField(null=True)
 
-    #controler_login = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='controler')
+    controler_login = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='controler')
 
     controler_auth = models.fields.CharField(choices=auth_status.choices, default=auth_status.PENDING, max_length=10)
     controler_comment = models.fields.CharField(max_length=254, null=True)

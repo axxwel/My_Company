@@ -4,8 +4,29 @@
 <h2>{{ order.name }}</h2>
 <a href="{% url 'order-list' %}">Retour</a>
 <ul>
-    <li>Asker login : {{ order.asker_login }}</li>
-    <li>controler login : {{ order.controler_login }}</li>
-    <li>controler auth : {{ order.get_controler_auth_display }}</li>
+    <li>
+    order_id : {{ order.order_id }}<br>
+    date : {{ order.date }}
+    </li>
+    <li>asker_login : {{ order.asker_login }}</li>
+    <li>
+    purchase_type : {{ order.purchase_type }}<br>
+    branch : {{ order.branch }}<br>
+    payment_method : {{ order.payment_method }}
+    </li>
+    <li>payment_method : {{ order.payment_method }}</li>
+    <li>
+    product : {{ order.product }}<br>
+    price : {{ order.price }}
+    </li>
+    <li>asker_comment : {{ order.asker_comment }}</li>
+    <li>
+    vendor : {{ order.vendor }}<br>
+    unit_price : {{ order.unit_price }}<br>
+    delivery_date : {{ order.delivery_date }}
+    </li>
+    <li>controler_login : {{ order.controler_login }}</li>
+    <li>controler_auth : {{ order.controler_auth }}</li>
+    <li>controler_comment : {{ order.controler_comment }}</li>
 </ul>
 {% endblock %}
