@@ -5,6 +5,13 @@ from purchases_auth.models import Order
 class Order_form(forms.ModelForm):
     class Meta:
         model = Order
-        fields = '__all__'
-        #exclude = ('controler_login', 'controler_auth','controler_comment')
+        #fields = '__all__'
+        exclude = (
+            'order_id',
+            'date', 
+            'asker_login',
+            'controler_login', 
+            'controler_auth',
+            'controler_comment',
+        )
     

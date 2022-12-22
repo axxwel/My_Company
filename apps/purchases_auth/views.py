@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
 from purchases_auth.models import Order
+from authentication.models import User
 from purchases_auth.forms import Order_form
 
 @login_required
@@ -23,11 +24,11 @@ def order_detail(request, id):
 def order_create(request):
     if request.method == 'POST':
         order_form = Order_form(request.POST)
-        order_form["asker_login"]=request.user.id
-
-
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            order.asker_login=request.user
+            order.save()
+
             return redirect('order-detail', order.id)
     else:
         order_form = Order_form()
