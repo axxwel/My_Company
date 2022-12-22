@@ -134,3 +134,7 @@ LOGIN_URL = 'login'
 
 # Default redirect url
 LOGIN_REDIRECT_URL = 'order-list'
+
+# counter variable
+today = 0
+count = 0

@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -25,7 +26,24 @@ def order_create(request):
     if request.method == 'POST':
         order_form = Order_form(request.POST)
         if order_form.is_valid():
+            global day
+            global count
+            try: 
+                if day is not None: pass
+            except NameError: day = datetime.datetime.now().day 
+            try: 
+                if count is not None: pass
+            except NameError: count = 0
+
+            day = datetime.datetime.now().day-1
+            if(day != datetime.datetime.now().day):
+                day=datetime.datetime.now().day
+                count=1
+            else:
+                count+=1
+
             order = order_form.save(commit=False)
+            order.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{count:03d}'
             order.asker_login=request.user
             order.save()
 
