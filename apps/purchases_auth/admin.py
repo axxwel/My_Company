@@ -2,8 +2,6 @@ from django.contrib import admin
 
 from purchases_auth.models import Payment_method
 from purchases_auth.models import Purchase_type
-from purchases_auth.models import branch
-from purchases_auth.models import Process
 from purchases_auth.models import Threshold
 from purchases_auth.models import Order
     
@@ -28,7 +26,5 @@ class Order_admin(admin.ModelAdmin):
 
 admin.site.register(Payment_method, Payment_method_admin)
 admin.site.register(Purchase_type, Purchase_type_admin)
-admin.site.register(branch, Branch_admin)
-admin.site.register(Process, Process_admin)
 admin.site.register(Threshold, Threshold_admin)
 admin.site.register(Order, Order_admin)
