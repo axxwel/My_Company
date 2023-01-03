@@ -1,12 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-from authentication.models import User, Branch, Process
-
-class purchases_auth_admin_goup(models.Model):
-    def __str__(self):
-        return f'{self.name}'
-    members = models.ManyToManyField(User)
+from authentication.models import User, Company, Branch
 
 class Payment_method(models.Model):
     def __str__(self):
@@ -18,28 +13,17 @@ class Purchase_type(models.Model):
         return f'{self.name}'
     name = models.fields.CharField(max_length=30, unique=True)
 
-class Company_threshold(models.Model):
+class Process(models.Model):
     def __str__(self):
         return f'{self.name}'
-    company = models.fields.CharField(max_length=30, unique=True)
+    
+    name = models.fields.CharField(max_length=30, unique=True)
+    Purchase_type = models.ForeignKey(Purchase_type, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     company_threshold = models.fields.IntegerField(default=6000)
     branch_threshold = models.fields.IntegerField(default=1000)
     process_threshold = models.fields.IntegerField(default=500)
-
-class branch_threshold(models.Model):
-    def __str__(self):
-        return f'{self.branch}'
-    company = models.fields.CharField(max_length=30)
-    branch = models.fields.CharField(max_length=30)
-    threshold = models.fields.IntegerField(default=Company_threshold.branch_threshold)
-
-class process_threshold(models.Model):
-    def __str__(self):
-        return f'{self.name}'
-    company = models.fields.CharField(max_length=30)
-    branch = models.fields.CharField(max_length=30)
-    process = models.fields.CharField(max_length=30)
-    threshold = models.fields.IntegerField(default=Company_threshold.process_threshold)
 
 class Order(models.Model):
     def __str__(self):
