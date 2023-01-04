@@ -1,0 +1,101 @@
+* { 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/*header*/
+header{ 
+    background-color: white ;
+    color: black;
+    padding: 10px;
+    display: flex;
+}
+.col {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+
+/*navigation*/
+nav{
+    float: left;
+    width: 15%;
+    height: 100%;
+    background-color: #ccc;
+    padding: 20px;
+}
+nav li{
+    list-style-type: none;
+}
+
+/*content*/
+.main{
+    width: 80%;
+    padding: 20px;
+}
+
+/*authentification*/
+.login {
+    display: flex;
+    justify-content: center;
+}
+.login div{   
+    width: 30%;
+    text-align: center;
+    border: 1px solid black;
+    padding: 20px;
+}
+.signup {
+    display: flex;
+    justify-content: center;
+}
+.signup div{   
+    width: 50%;
+    text-align: center;
+    border: 1px solid black;
+    padding: 20px;
+}
+
+footer {
+    clear: both;
+    background-color: #1B1464;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/*
+section.p{
+    background: grey;
+    padding: 0.5em;
+    margin: 0;
+}
+
+order-list.ul{
+    background: gray;
+    padding: 0.5em;
+    margin: 0;
+}
+
+order-list.li{
+	list-style-type: none;
+    background: red ;
+    border-radius: 1em ;
+    border: 0.1em solid white;
+    
+	margin: 0.5em;
+	padding: 1em;
+}
+
+
+footer {
+        clear: both;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }*/

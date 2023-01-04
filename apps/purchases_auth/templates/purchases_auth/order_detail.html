@@ -3,6 +3,7 @@
 {% block content %}
 <h2>{{ order.name }}</h2>
 <a href="{% url 'order-list' %}">Retour</a>
+<div class="order-list">
 <ul>
     <li>
     order_id : {{ order.order_id }}<br>
@@ -29,4 +30,5 @@
     <li>controler_auth : {{ order.controler_auth }}</li>
     <li>controler_comment : {{ order.controler_comment }}</li>
 </ul>
+</div>
 {% endblock %}
