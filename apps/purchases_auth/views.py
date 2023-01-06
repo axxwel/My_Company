@@ -35,7 +35,7 @@ def order_create(request):
                 if count is not None: pass
             except NameError: count = 0
 
-            day = datetime.datetime.now().day-1
+            day = datetime.datetime.now().day
             if(day != datetime.datetime.now().day):
                 day=datetime.datetime.now().day
                 count=1

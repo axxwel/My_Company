@@ -11,13 +11,20 @@ body {
 header{ 
     background-color: white ;
     color: black;
-    padding: 10px;
     display: flex;
+
 }
 .col {
     float: left;
-    width: 33.33%;
+    width: 30%;
     text-align: center;
+    border: 1px solid green;
+}
+
+/*main*/
+.main{
+    width: 90%;
+    border: 1px solid green;
 }
 
 /*navigation*/
@@ -32,12 +39,6 @@ nav li{
     list-style-type: none;
 }
 
-/*content*/
-.main{
-    width: 80%;
-    padding: 20px;
-}
-
 /*authentification*/
 .login {
     display: flex;
@@ -49,17 +50,76 @@ nav li{
     border: 1px solid black;
     padding: 20px;
 }
-.signup {
+.signup{
     display: flex;
     justify-content: center;
 }
-.signup div{   
-    width: 50%;
-    text-align: center;
+.signup div{
+    text-align: center;   
+    width: 30%;
     border: 1px solid black;
     padding: 20px;
 }
+.signup div p{   
+    text-align: left;
+}
 
+/*purchase_auth*/
+.orders-list{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid purple;
+}
+.orders-list div{
+    width: 100%;
+}
+.orders-list table{
+    width: 100%;
+    border: 1px solid purple;
+}
+.orders-list tr[value="Pending"] {
+    background-color: orange;
+}
+
+.orders-list td{
+    text-align: center;
+    padding: 5px
+}
+.orders-list tr h3{
+    text-align: left;
+    padding-top: 20px;
+}
+
+.order-create{
+    display: flex;
+    justify-content: left;
+    padding: 20px;
+    border: 1px solid purple; 
+}
+.orders-create div{
+    width: 100%;
+}
+
+/*.orders-list li{
+    list-style-type: none;
+    background: orange ;
+    border-radius: 5px ;
+    border: 1px solid black;
+	padding: 5px;
+}
+.order-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.order-box {
+    width: 25%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}*/
+
+/*footer*/
 footer {
     clear: both;
     background-color: #1B1464;

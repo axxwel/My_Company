@@ -6,7 +6,6 @@
         <link rel="stylesheet" href="{% static 'styles.css' %}" />
     </head>
     <body>
-
         <header>
             <div class = "col">
                 <img src="{% static 'logo_entreprise.png' %}" alt="logo_entreprise" width="200"/>
@@ -22,17 +21,18 @@
                 {% endif %}
             </div>
         </header>
-
-        <nav>
-            menu
-            <ul>
-                <li>
-                    <a href="{% url 'order-list' %}">Purchases_auth</a>
-                </li>
-            </ul>
-        </nav>
         <div class = "main">
-            {% block content %}{% endblock %}
+            <nav>
+                menu
+                <ul>
+                    <li>
+                        <a href="{% url 'order-list' %}">Purchases_auth</a>
+                    </li>
+                </ul>
+            </nav>
+            <div>
+                {% block content %}{% endblock %}
+            </div>
         </div>
         <footer>
             My Company application Version 1.0 by Alexandre Gimeno 2023.

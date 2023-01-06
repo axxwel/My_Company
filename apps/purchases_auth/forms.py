@@ -6,7 +6,7 @@ class Order_form(forms.ModelForm):
     class Meta:
         model = Order
         
-        fields = ['branch', 'process', 'payment_method', 'product', 'price']
+        fields = ['branch', 'process', 'purchase_type', 'payment_method', 'product', 'price']
         
         #fields = '__all__'
         """ exclude = (

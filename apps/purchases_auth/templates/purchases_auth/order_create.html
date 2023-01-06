@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>add new order</h2>
-<a href="{% url 'order-list' %}">Retour</a>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ order_form.as_p }}
-    <input type="submit" value="Add order">
-</form>
+<div class="order-create">
+    <div>
+        <a href="{% url 'order-list' %}">Retour</a>
+        <h2>add new order</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ order_form.as_p }}
+            <input type="submit" value="Add order">
+        </form>
+    </div>
+</div>
 {% endblock %}
