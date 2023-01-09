@@ -3,9 +3,7 @@
 {% block content %}
 <div class="orders-list">
     <div>
-    <a href="{% url 'order-create' %}">new order</a>
-
-    
+    <p><a href="{% url 'order-create' %}">new order</a></p>
     <table>
         <thead>
             {% if asker_order %}

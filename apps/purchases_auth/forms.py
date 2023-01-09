@@ -6,15 +6,21 @@ class Order_form(forms.ModelForm):
     class Meta:
         model = Order
         
-        fields = ['branch', 'process', 'purchase_type', 'payment_method', 'product', 'price']
+        fields = [
+            'branch',
+            'process',
+            'purchase_type',
+            'payment_method',
+            'product',
+            'price',
+        ]
+
+class Order_form_auth(forms.ModelForm):
+    class Meta:
+        model = Order
         
-        #fields = '__all__'
-        """ exclude = (
-            'order_id',
-            'date', 
-            'asker_login',
-            'controler_login', 
-            'controler_auth',
+        fields = [
             'controler_comment',
-        ) """
+            'controler_auth',
+        ]
     

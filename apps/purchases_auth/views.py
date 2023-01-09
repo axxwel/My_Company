@@ -16,12 +16,6 @@ def order_list(request):
     'purchases_auth/order.html',
     {'asker_order': asker_order, 'controler_order': controler_order})
 
-def order_detail(request, id):
-    order = Order.objects.get(id=id)
-    return render(request,
-    'purchases_auth/order_detail.html',
-    {'order':order})
-
 def order_create(request):
     if request.method == 'POST':
         order_form = Order_form(request.POST)
@@ -54,3 +48,24 @@ def order_create(request):
     return render(request,
     'purchases_auth/order_create.html',
     {'order_form': order_form})
+
+def order_detail_pending(request, id):
+    order = Order.objects.get(id=id)
+    if request.method == 'POST':
+        order_form = order(request.POST)
+        if order_form.is_valid():
+            return redirect('order-detail', order.id)
+    else:
+        order_form = Order_form()
+
+    return render(request,
+    'purchases_auth/order_detail.html',
+    {'order':order})
+
+def order_detail(request, id):
+    order = Order.objects.get(id=id)
+
+    return render(request,
+    'purchases_auth/order_detail.html',
+    {'order':order})
+    

@@ -28,6 +28,7 @@ urlpatterns = [
     path('logout/', authentication.views.logout_user, name='logout'),
 #Purchases_auth
     path('order/', views.order_list, name='order-list'),
+    path('order/<int:id>/pending', views.order_detail, name='order-detail-pending'),
     path('order/<int:id>/', views.order_detail, name='order-detail'),
     path('order/add/', views.order_create, name='order-create'),
 ]

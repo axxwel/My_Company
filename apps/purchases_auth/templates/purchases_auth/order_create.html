@@ -7,7 +7,7 @@
         <h2>add new order</h2>
         <form action="" method="post">
             {% csrf_token %}
-            {{ order_form.as_p }}
+            {{ order_form.as_table }}
             <input type="submit" value="Add order">
         </form>
     </div>

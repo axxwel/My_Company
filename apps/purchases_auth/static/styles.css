@@ -14,7 +14,7 @@ header{
     display: flex;
 
 }
-.col {
+header .col {
     float: left;
     width: 30%;
     text-align: center;
@@ -64,26 +64,26 @@ nav li{
     text-align: left;
 }
 
-/*purchase_auth*/
+/*purchase_auth--------------------------------*/
+/*order_list*/
 .orders-list{
     display: flex;
     justify-content: center;
-    padding: 20px;
-    border: 1px solid purple;
+    padding: 10px;
 }
 .orders-list div{
     width: 100%;
 }
 .orders-list table{
     width: 100%;
-    border: 1px solid purple;
+    padding: 10px;
+    background-color: beige;
 }
 .orders-list tr[value="Pending"] {
     background-color: orange;
 }
-
 .orders-list td{
-    text-align: center;
+    text-align: left;
     padding: 5px
 }
 .orders-list tr h3{
@@ -91,34 +91,51 @@ nav li{
     padding-top: 20px;
 }
 
+/*order-create*/
 .order-create{
     display: flex;
     justify-content: left;
     padding: 20px;
-    border: 1px solid purple; 
 }
 .orders-create div{
     width: 100%;
 }
 
-/*.orders-list li{
-    list-style-type: none;
-    background: orange ;
-    border-radius: 5px ;
-    border: 1px solid black;
-	padding: 5px;
+/*order-detail*/
+.orders-detail{
+    display: grid;
+    padding:10px;
 }
-.order-container{
-    display: flex;
-    flex-wrap: wrap;
+.orders-detail table{
+    width: 100%;
 }
-.order-box {
+.orders-detail div{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: beige;
+}
+.orders-detail .box{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: beige;
+    border: 1px solid #1B1464;
+}
+.orders-detail td{
+    
+    padding: 5px;
     width: 25%;
-    background-color: #333;
-    color: white;
+}
+.orders-detail td[value="value"]{
+    background-color: white;
+}
+.orders-detail .value{
+    background-color: white;
+}
+.orders-detail .Pending{
+    padding: 15px;
     text-align: center;
-}*/
-
+    background-color: orange;
+}
 /*footer*/
 footer {
     clear: both;
@@ -127,35 +144,3 @@ footer {
     padding: 10px;
     text-align: center;
 }
-
-/*
-section.p{
-    background: grey;
-    padding: 0.5em;
-    margin: 0;
-}
-
-order-list.ul{
-    background: gray;
-    padding: 0.5em;
-    margin: 0;
-}
-
-order-list.li{
-	list-style-type: none;
-    background: red ;
-    border-radius: 1em ;
-    border: 0.1em solid white;
-    
-	margin: 0.5em;
-	padding: 1em;
-}
-
-
-footer {
-        clear: both;
-        background-color: #333;
-        color: white;
-        padding: 10px;
-        text-align: center;
-      }*/
