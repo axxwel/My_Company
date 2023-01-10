@@ -5,7 +5,6 @@ from purchases_auth.models import Order
 class Order_form(forms.ModelForm):
     class Meta:
         model = Order
-        
         fields = [
             'branch',
             'process',
@@ -15,10 +14,9 @@ class Order_form(forms.ModelForm):
             'price',
         ]
 
-class Order_form_auth(forms.ModelForm):
+class Order_auth(forms.ModelForm):
     class Meta:
         model = Order
-        
         fields = [
             'controler_comment',
             'controler_auth',

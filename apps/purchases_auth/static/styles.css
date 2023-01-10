@@ -82,6 +82,12 @@ nav li{
 .orders-list tr[value="Pending"] {
     background-color: orange;
 }
+.orders-list tr[value="Authorized"] {
+    background-color: green;
+}
+.orders-list tr[value="Refused"] {
+    background-color: red;
+}
 .orders-list td{
     text-align: left;
     padding: 5px
@@ -135,6 +141,16 @@ nav li{
     padding: 15px;
     text-align: center;
     background-color: orange;
+}
+.orders-detail .Authorized{
+    padding: 15px;
+    text-align: center;
+    background-color: green;
+}
+.orders-detail .Refused{
+    padding: 15px;
+    text-align: center;
+    background-color: red;
 }
 /*footer*/
 footer {

@@ -83,12 +83,25 @@
                 </tbody>
             </table>
         </div>
-        {% if order.controler_comment %}
+        {% if order.controler_auth == "Pending" and controler_order %}
+        <form method="post" action="{% url 'order-pending' id=order.id %}">
+            {% csrf_token %}
+            <div class="box">
+                <label class="control-label" for="{{ auth.controler_comment.id_for_label }}">{{ auth.controler_comment.label }}</label>
+                <p class="value" size="254">{{ auth.controler_comment }}</p>
+            </div>
+            <div class="box_auth">
+                <input type="submit" id="{{ auth.controler_auth.id_for_label }}" name="{{ auth.controler_auth.name }}" value="Authorized">
+                <input type="submit" id="{{ auth.controler_auth.id_for_label }}" name="{{ auth.controler_auth.name }}" value="Refused">
+            </div>
+        </form>
+        {% elif order.controler_comment %}
         <div class="box">
             Controler comment :
             <p class="value">{{ order.controler_comment }}</p>
         </div>
         {% endif %}
+        <h2 class="{{ order.controler_auth }}">{{ order.controler_auth }}</h2>
     </div>
 </div>
 </div>
