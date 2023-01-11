@@ -26,12 +26,12 @@ def order_create(request):
         if count is not None: pass
     except NameError: count = 0                            
     
-    filled_field = Order
+    filled_field = Order()
     filled_count=count+1
     
     filled_field.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{filled_count:03d}'
     filled_field.date=datetime.datetime.now()
-    filled_field.asker_login = request.user.id
+    filled_field.asker_login = request.user
 
     if request.method == 'POST':
         order_form = Order_form(request.POST)
@@ -56,7 +56,7 @@ def order_create(request):
 
     return render(request,
     'purchases_auth/order_create.html',
-    {'order_form': order_form})
+    {'order_form': order_form, 'filled_field': filled_field})
 
 @login_required
 def order_detail(request, id):
