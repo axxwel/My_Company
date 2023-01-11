@@ -11,7 +11,11 @@ class Order_form(forms.ModelForm):
             'purchase_type',
             'payment_method',
             'product',
+            'unit_price',
             'price',
+            'vendor',
+            'delivery_date',
+            'asker_comment',
         ]
 
 class Order_auth(forms.ModelForm):

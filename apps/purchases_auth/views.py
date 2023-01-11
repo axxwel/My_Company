@@ -15,18 +15,28 @@ def order_list(request):
     'purchases_auth/order.html',
     {'asker_order': asker_order, 'controler_order': controler_order})
 
+@login_required
 def order_create(request):
+    global day
+    global count
+    try: 
+        if day is not None: pass
+    except NameError: day = datetime.datetime.now().day 
+    try: 
+        if count is not None: pass
+    except NameError: count = 0                            
+    
+    filled_field = Order
+    filled_count=count+1
+    
+    filled_field.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{filled_count:03d}'
+    filled_field.date=datetime.datetime.now()
+    filled_field.asker_login = request.user.id
+
     if request.method == 'POST':
         order_form = Order_form(request.POST)
         if order_form.is_valid():
-            global day
-            global count
-            try: 
-                if day is not None: pass
-            except NameError: day = datetime.datetime.now().day 
-            try: 
-                if count is not None: pass
-            except NameError: count = 0
+            
 
             day = datetime.datetime.now().day
             if(day != datetime.datetime.now().day):
@@ -48,6 +58,7 @@ def order_create(request):
     'purchases_auth/order_create.html',
     {'order_form': order_form})
 
+@login_required
 def order_detail(request, id):
     order = Order.objects.get(id=id)
     controler_order =Order.objects.filter(controler_login=request.user.id, controler_auth="Pending")

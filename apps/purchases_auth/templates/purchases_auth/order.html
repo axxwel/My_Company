@@ -47,7 +47,7 @@
         <tbody>
             {% for asker_order in asker_order %}
             <tr value="{{ asker_order.controler_auth }}">
-              <td><a href="{% url 'order-detail' asker_order.id %}">{{ asker_order.order_id }}</td>
+              <td><a href="{% url 'order-detail' asker_order.id %}">{{ asker_order.order_id }}</a></td>
               <td>{{ asker_order.product }}</td>
               <td>{{ asker_order.asker_login }}</td>
               <td>{{ asker_order.controler_login }}</td>

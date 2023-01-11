@@ -1,14 +1,88 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="order-create">
+<div class="orders-detail">
+    <p><a href="{% url 'order-list' %}">&lt;&lt; Retour</a></p>
     <div>
-        <a href="{% url 'order-list' %}">Retour</a>
-        <h2>add new order</h2>
+        <h2 class="New_order">add new order</h2>
+        {% csrf_token %}
         <form action="" method="post">
-            {% csrf_token %}
-            {{ order_form.as_table }}
-            <input type="submit" value="Add order">
+            <div class="box">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>Order_id :</td>
+                        <td class="value">{{ order_form.order_id }}</td>
+                        <td>Date :</td>
+                        <td class="value">{{ order_form.date }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>Asker_login :</td>
+                        <td class="value">{{ order_form.asker_login }}</td>
+                        <td>Branch :</td>
+                        <td class="value">{{ order_form.branch }}</td>
+                    </tr>
+                    <tr>
+                        <td>Process :</td>
+                        <td class="value">{{ order_form.process }}</td>
+                    </tr>
+                    <tr>
+                        <td>Purchase_type :</td>
+                        <td class="value">{{ order_form.purchase_type }}</td>
+                    </tr>
+                    <tr>
+                        <td>Payment method :</td>
+                        <td class="value">{{ order_form.payment_method }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>Product :</td>
+                        <td class="value">{{ order_form.product }}</td>
+                        <td>Unit price :</td>
+                        <td class="value">{{ order_form.unit_price }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Price :</td>
+                        <td class="value">{{ order_form.price }}</td>
+                    </tr>
+                    <tr>
+                        <td>Vendor :</td>
+                        <td class="value">{{ order_form.vendor }}</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery date :</td>
+                        <td class="value">{{ order_form.delivery_date }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box">
+                Asker comment :
+                <p class="value">{{ order_form.asker_comment }}</p>
+            </div>
+            <table>
+                <tbody>
+                <tr class="input-btn">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="submit" class="btn-add" value="Add order"></td>
+                </tr>
+                </tbody>
+            </table>
         </form>
     </div>
 </div>

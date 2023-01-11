@@ -48,7 +48,7 @@ class Order(models.Model):
     product = models.fields.CharField(max_length=17)
     price = models.fields.IntegerField()
 
-    asker_comment = models.fields.CharField(max_length=254, null=True)
+    asker_comment = models.fields.TextField()
 
     vendor = models.fields.CharField(max_length=17)
     unit_price = models.fields.IntegerField(null=True)
@@ -57,4 +57,4 @@ class Order(models.Model):
     controler_login = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='order_controler')
 
     controler_auth = models.fields.CharField(choices=auth_status.choices, default=auth_status.PENDING, max_length=10)
-    controler_comment = models.fields.CharField(max_length=254, null=True)
+    controler_comment = models.fields.TextField(max_length = 100, blank=True)
