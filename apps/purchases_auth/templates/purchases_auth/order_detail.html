@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}ORDER DETAILS{% endblock %}
+
 {% block content %}
 <div class="orders-detail">
-    <p><a href="{% url 'order-list' %}">&lt;&lt; Retour</a></p>
     <div>
         <h2 class="{{ order.controler_auth }}">{{ order.controler_auth }}</h2>
         <div class="box">
@@ -48,13 +49,13 @@
                     <td>Product :</td>
                     <td class="value">{{ order.product }}</td>
                     <td>Unit price :</td>
-                    <td class="value">{{ order.unit_price }}</td>
+                    <td class="value">{{ order.unit_price }}&#x20AC;</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td>Price :</td>
-                    <td class="value">{{ order.price }}</td>
+                    <td class="value">{{ order.price }}&#x20AC;</td>
                 </tr>
                 <tr>
                     <td>Vendor :</td>
@@ -101,7 +102,7 @@
                             </table>
                         </form>
                         {% else %}
-                            {% if order.order.controler_comment %}
+                            {% if order.controler_comment %}
                             Controler comment :
                             <p>{{ order.controler_comment }}</p>
                             {% endif %}

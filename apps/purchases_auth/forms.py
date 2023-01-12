@@ -1,8 +1,13 @@
 from django import forms
+import datetime
 
 from purchases_auth.models import Order
 
+from decimal import Decimal
+
 class Order_form(forms.ModelForm):
+    delivery_date=forms.DateField(initial=datetime.date.today ,widget=forms.SelectDateWidget)
+
     class Meta:
         model = Order
         fields = [

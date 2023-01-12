@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Company application</title>
+        <title>my Company</title>
         <link rel="stylesheet" href="{% static 'styles.css' %}" />
     </head>
     <body>
@@ -11,7 +11,7 @@
                 <img src="{% static 'logo_entreprise.png' %}" alt="logo_entreprise" width="200"/>
             </div>
             <div class = "col">
-                <h1>Application name</h1>
+                <h2>{% block title %}{% endblock %}</h2>
             </div>
             <div class = "col">
                 {% if user.is_authenticated %}
@@ -23,10 +23,20 @@
         </header>
         <div class = "main">
             <nav>
-                menu
                 <ul>
                     <li>
-                        <a href="{% url 'order-list' %}">Purchases_auth</a>
+                        <a href="{% url 'order-list' %}">Order list</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'order-create' %}">Create order</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="{% url 'order-list' %}">Order list</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'order-create' %}">Create order</a>
                     </li>
                 </ul>
             </nav>

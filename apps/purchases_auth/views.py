@@ -17,6 +17,8 @@ def order_list(request):
 
 @login_required
 def order_create(request):
+    filled_field = Order()
+
     global day
     global count
     try: 
@@ -26,9 +28,14 @@ def order_create(request):
         if count is not None: pass
     except NameError: count = 0                            
     
-    filled_field = Order()
-    filled_count=count+1
-    
+    filled_day=day
+    filled_count=count
+    if(day != datetime.datetime.now().day):
+        filled_day=datetime.datetime.now().day
+        filled_count=1
+    else:
+        filled_count=count+1
+
     filled_field.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{filled_count:03d}'
     filled_field.date=datetime.datetime.now()
     filled_field.asker_login = request.user
@@ -37,17 +44,13 @@ def order_create(request):
         order_form = Order_form(request.POST)
         if order_form.is_valid():
             
-
-            day = datetime.datetime.now().day
-            if(day != datetime.datetime.now().day):
-                day=datetime.datetime.now().day
-                count=1
-            else:
-                count+=1
+            day=filled_day
+            count=filled_count
 
             order = order_form.save(commit=False)
-            order.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{count:03d}'
-            order.asker_login=request.user
+            order.order_id=filled_field.order_id
+            order.date=filled_field.date
+            order.asker_login=filled_field.asker_login
             order.save()
 
             return redirect('order-detail', order.id)
@@ -61,7 +64,7 @@ def order_create(request):
 @login_required
 def order_detail(request, id):
     order = Order.objects.get(id=id)
-    controler_order =Order.objects.filter(controler_login=request.user.id, controler_auth="Pending")
+    controler_order =Order.objects.filter(id=id, controler_login=request.user.id, controler_auth="Pending")
     auth = Order_auth(request.POST, instance=order)
     
     if request.method == 'POST':

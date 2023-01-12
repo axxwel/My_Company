@@ -5,10 +5,11 @@
     --color-red: #E4572E;
     --color-green: #20BF55;
     --color-beige: #EAF2D7;
+    --color-darkbeige: #CEE1A3;
   }
 
 * { 
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
 }
 a {
     color: var(--color-blue);
@@ -22,14 +23,15 @@ body {
 /*header*/
 header{ 
     background-color: white ;
-    color: black;
+    color: var(--color-blue);
     display: flex;
-
+    vertical-align: middle;
 }
 header .col {
     float: left;
     width: 30%;
     text-align: center;
+    
 }
 
 /*main*/
@@ -45,8 +47,23 @@ nav{
     background-color: var(--color-gray);
     padding: 20px;
 }
+nav ul{
+    margin: 0;
+    padding: 0;
+}
 nav li{
-    list-style-type: none;
+    background-color: var(--color-beige);
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+nav li:hover{
+    background-color: var(--color-darkbeige);
+}
+nav li a{
+    text-decoration: none;
+    color: black;
+    font-size: large;
 }
 
 /*authentification*/
@@ -76,18 +93,22 @@ nav li{
 
 /*purchase_auth--------------------------------*/
 /*order_list*/
+
+
 .orders-list{
-    display: flex;
-    justify-content: center;
+    display: grid;
     padding: 10px;
-}
-.orders-list div{
-    width: 100%;
 }
 .orders-list table{
     width: 100%;
+}
+.orders-list .box{
     padding: 10px;
-    background-color:  var(--color-beige);
+    margin-bottom: 10px;
+    background-color: var(--color-beige);
+}
+.orders-list div{
+    padding: 10px;
 }
 .orders-list tr[value="Pending"] {
     background-color: var(--color-orange);
@@ -102,19 +123,30 @@ nav li{
     text-align: left;
     padding: 5px
 }
-.orders-list tr h3{
-    text-align: left;
-    padding-top: 20px;
+.orders-list h3{
+    padding: 15px;
+    text-align: center;
+    color: white;
+    background-color: var(--color-gray);
 }
-
-/*order-create*/
-.order-create{
-    display: flex;
-    justify-content: left;
+.orders-list .box-new-btn{
+    text-align: right;
+    padding-right: 0;
+}
+.orders-list .new-btn{
+    width: 20%;
+    text-align: center;
+    font-size: x-large;
+    border: none;
     padding: 20px;
+    background-color: var(--color-gray);
 }
-.orders-create div{
-    width: 100%;
+.orders-list .new-btn{
+    color: white;
+    text-decoration: none;
+}
+.orders-list .new-btn:hover{
+    background-color: darkslategrey;
 }
 
 /*order-detail*/
@@ -146,6 +178,9 @@ nav li{
 .orders-detail .value{
     background-color: white;
 }
+.orders-detail .value input[type="number"]{
+    text-align: right;
+}
 .orders-detail .New_order{
     padding: 15px;
     text-align: center;
@@ -176,12 +211,13 @@ nav li{
     height: 6em;
     resize: none;
 }
-.orders-detail input[type=submit]{
+.orders-detail input[type=submit], .orders-detail .back-btn{
     padding: 15px;
     width: 75%;
     font-size: x-large;
     color: white;
     text-align: center;
+    border: none;
 }
 .orders-detail .input-btn{
     text-align: center;
@@ -193,22 +229,32 @@ nav li{
     background-color: darkgreen;
 }
 .orders-detail .btn-ko{
-    background-color: var(--color-green);
+    background-color: var(--color-red);
 }
 .orders-detail .btn-ko:hover{
     background-color: darkred;
 }
-.orders-detail .btn-add{
+.orders-detail .back-btn{
     background-color: var(--color-gray);
 }
+.orders-detail .back-btn:hover{
+    background-color: darkgray;
+}
+.orders-detail .btn-add{
+    background-color: var(--color-green);
+}
 .orders-detail .btn-add:hover{
-    background-color: darkslategrey;
+    background-color: darkgreen;
 }
 
 .orders-detail select, .orders-detail input , .orders-detail textarea{
     background-color: white;
     border: none;
     width: 100%;
+}
+#id_delivery_date_month, #id_delivery_date_day, #id_delivery_date_year{
+    border: none;
+    width: 33%;
 }
 
 /*footer*/

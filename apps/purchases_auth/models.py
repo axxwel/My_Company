@@ -35,7 +35,7 @@ class Order(models.Model):
         PENDING = 'Pending'
 
     order_id = models.fields.CharField(max_length=17, unique=True)
-    date = models.fields.DateTimeField(auto_now=True)
+    date = models.fields.DateField(auto_now=True)
 
     asker_login = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     
@@ -48,11 +48,11 @@ class Order(models.Model):
     product = models.fields.CharField(max_length=17)
     price = models.fields.IntegerField()
 
-    asker_comment = models.fields.TextField()
+    asker_comment = models.fields.TextField(max_length = 100, blank=True)
 
     vendor = models.fields.CharField(max_length=17)
-    unit_price = models.fields.IntegerField(null=True)
-    delivery_date = models.fields.DateField(null=True)
+    unit_price = models.fields.IntegerField(blank=True)
+    delivery_date = models.fields.DateField()
 
     controler_login = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='order_controler')
 

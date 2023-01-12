@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}CREATE ORDER{% endblock %}
+
 {% block content %}
 <div class="orders-detail">
-    <p><a href="{% url 'order-list' %}">&lt;&lt; Retour</a></p>
     <div>
         <h2 class="New_order">add new order</h2>
-        {% csrf_token %}
         <form action="" method="post">
             <div class="box">
                 <table>
@@ -71,15 +71,18 @@
             </div>
             <div class="box">
                 Asker comment :
-                <p class="value">{{ filled_field.asker_comment }}</p>
+                <p class="value">{{ order_form.asker_comment }}</p>
             </div>
             <table>
                 <tbody>
                 <tr class="input-btn">
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td><input type="submit" class="btn-add" value="Add order"></td>
+                    <td><a href="{% url 'order-list' %}"><button type="button" class="back-btn">Cancel</button></a></td>
+                    <td>
+                        {% csrf_token %}
+                        <input type="submit" class="btn-add" value="Add order">
+                    </td>
                 </tr>
                 </tbody>
             </table>
