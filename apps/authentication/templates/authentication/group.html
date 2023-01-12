@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}GROUP{% endblock %}
+
+{% block content %}
+<div class="orders-list">
+    <div>
+        
+        <div class="box">
+            <h3>Pending your authorization</h3>
+            <table>
+                <thead>
+                    {% if controler_order %}
+                    <tr>
+                
+                    </tr>
+                    <tr>
+                        <th>id</th>
+                        <th>product</th>
+                        <th>asker_login</th>
+                        <th>controler_login</th>
+                        <th>controler_auth</th>
+                    </tr>
+                    {% endif %}
+                </thead>
+                <tbody>
+                    {% for controler_order in controler_order %}
+                    <tr value="{{ controler_order.controler_auth }}">
+                        <td><a href="{% url 'order-detail' controler_order.id %}">{{ controler_order.order_id }}</td>
+                        <td>{{ controler_order.product }}</td>
+                        <td>{{ controler_order.asker_login }}</td>
+                        <td>{{ controler_order.controler_login }}</td>
+                        <td>{{ controler_order.controler_auth }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="box">
+            <h3>Pending controler authorization</h3>
+            <table>
+                <thead>
+                    {% if asker_order %}
+                    <tr>
+                        <th>id</th>
+                        <th>product</th>
+                        <th>asker_login</th>
+                        <th>controler_login</th>
+                        <th>controler_auth</th>
+                    </tr>
+                    {% endif %}
+                </thead>
+                <tbody>
+                    {% for asker_order in asker_order %}
+                    <tr value="{{ asker_order.controler_auth }}">
+                        <td><a href="{% url 'order-detail' asker_order.id %}">{{ asker_order.order_id }}</a></td>
+                        <td>{{ asker_order.product }}</td>
+                        <td>{{ asker_order.asker_login }}</td>
+                        <td>{{ asker_order.controler_login }}</td>
+                        <td>{{ asker_order.controler_auth }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="box-new-btn">
+                <a href="{% url 'order-create' %}"><button class="new-btn">New order</button></a></td>
+            </div>
+        </div>
+    </div>
+</div>    
+{% endblock %}

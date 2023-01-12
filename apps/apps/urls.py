@@ -26,6 +26,7 @@ urlpatterns = [
     path('', authentication.views.LoginPageView.as_view() , name='login'),
     path('signup/', authentication.views.signup_page, name='signup'),
     path('logout/', authentication.views.logout_user, name='logout'),
+    path('group/', authentication.views.group_admin, name='group-admin'),
 #Purchases_auth
     path('order/', views.order_list, name='order-list'),
     path('order/<int:id>/pending', views.order_detail, name='order-pending'),

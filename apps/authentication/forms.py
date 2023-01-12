@@ -16,3 +16,11 @@ class LoginForm(forms.Form):
     username = forms.CharField(max_length=63, label='username')
     password = forms.CharField(max_length=63, widget=forms.PasswordInput, label='password')
 
+class CompanyForm(forms.Form):
+    username = forms.CharField(max_length=63, label='username')
+    password = forms.CharField(max_length=63, widget=forms.PasswordInput, label='password')
+
+class BranchForm(forms.Form):
+    username = forms.CharField(max_length=63, label='username')
+    password = forms.CharField(max_length=63, widget=forms.PasswordInput, label='password')
+

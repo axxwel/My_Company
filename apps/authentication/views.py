@@ -1,13 +1,16 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 from django.views.generic import View
 
 from authentication.forms import LoginForm
+from authentication.models import Company, Branch
 
 from . import forms
 
+#user authetification===================================================
 class LoginPageView(View):
     form_class = LoginForm
     template_name = 'authentication/login.html'
@@ -44,3 +47,14 @@ def signup_page(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+#staff administration====================================================================
+
+@login_required
+def group_admin(request):
+    company=Company.objects.filter()
+    branch =Branch.objects.filter()
+    
+    return render(request,
+    'autentication/group.html',
+    {'company': company, 'branch': branch})
