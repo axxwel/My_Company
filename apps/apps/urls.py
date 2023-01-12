@@ -29,7 +29,6 @@ urlpatterns = [
     path('group/', authentication.views.group_admin, name='group-admin'),
 #Purchases_auth
     path('order/', views.order_list, name='order-list'),
-    path('order/<int:id>/pending', views.order_detail, name='order-pending'),
     path('order/<int:id>/', views.order_detail, name='order-detail'),
     path('order/add/', views.order_create, name='order-create'),
 ]

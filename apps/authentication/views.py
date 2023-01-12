@@ -56,5 +56,5 @@ def group_admin(request):
     branch =Branch.objects.filter()
     
     return render(request,
-    'autentication/group.html',
+    'authentication/group.html',
     {'company': company, 'branch': branch})
