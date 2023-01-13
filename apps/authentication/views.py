@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 from django.views.generic import View
 
-from authentication.forms import LoginForm
-from authentication.models import Company, Branch
+from authentication.forms import LoginForm, CompanyForm, BranchForm, UserForm
+from authentication.models import Company, Branch, User
 
 from . import forms
 
@@ -51,10 +51,63 @@ def logout_user(request):
 #staff administration====================================================================
 
 @login_required
-def group_admin(request):
-    company=Company.objects.filter()
-    branch =Branch.objects.filter()
-    
+def config_home(request):
+    companys=Company.objects.filter()
+    branchs=Branch.objects.filter()
+
+    new_company = CompanyForm()
+    new_branch = BranchForm()
+
+    if request.method == 'POST':
+        if 'new_company' in request.POST:
+            new_company = forms.CompanyForm(request.POST)
+            if new_company.is_valid():
+                new_company.save()
+                return redirect('config-home')
+        
+        if 'new_branch' in request.POST:
+            new_branch = forms.CompanyForm(request.POST)
+            if new_branch.is_valid():
+                new_branch.save()
+                return redirect('config-home')
+
+    context={
+    'companys': companys, 'new_company': new_company,
+    'branchs': branchs, 'new_branch': new_branch}
+
+    return render(request,'authentication/config.html',context=context)
+
+
+""" def config_home(request):
+    companys=Company.objects.filter()
+    branchs=Branch.objects.filter()
+    users=User.objects.filter()
+
+    new_company = CompanyForm()
+    new_branch = BranchForm()
+    new_user = UserForm()
+
+    if request.method == 'POST':
+        if 'new_company' in request.POST:
+            new_company = forms.CompanyForm(request.POST)
+            if new_company.is_valid():
+                new_company.save()
+                return redirect('config-home')
+
+        if 'new_branch' in request.POST:
+            new_branch = forms.BranchForm(request.POST)
+            if new_branch.is_valid():
+                new_branch.save()
+                return redirect('config-home')
+
+        if 'new_user' in request.POST:
+            new_user = forms.UserForm(request.POST)
+            if new_user.is_valid():
+                new_user.save()
+                return redirect('config-home')
+
     return render(request,
-    'authentication/group.html',
-    {'company': company, 'branch': branch})
+    'authentication/config.html',
+    {'companys': companys, 'new_company': new_company,
+    'branchs': branchs, 'new_branch': new_branch,
+    'users': users, 'new_user': new_user}) """

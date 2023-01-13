@@ -91,10 +91,67 @@ nav li a{
     text-align: left;
 }
 
+/*configuration*/
+.config-home{
+    display: grid;
+    padding: 10px;
+}
+.config-home table{
+    width: 100%;
+}
+.config-home .box{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--color-beige);
+}
+.config-home div{
+    padding: 10px;
+}
+.config-home td, .config-home th{
+    text-align: left;
+    padding: 5px
+}
+.config-home h3{
+    padding: 15px;
+    text-align: center;
+    color: white;
+    background-color: var(--color-gray);
+}
+.config-home td{
+    background-color: var(--color-orange);
+    width: 32%;
+}
+.config-home td[value="value"]{
+    background-color: white;
+    padding: 0px;
+}
+.config-home .value{
+    background-color: white;
+}
+.config-home td[value="btn-col"]{
+    background-color: var(--color-beige);
+    padding: 0px;
+    width: 30%;
+}
+.config-home select, .config-home input , .config-home textarea{
+    background-color: white;
+    border: none;
+    width: 100%;
+}
+.config-home input[type=submit]{
+    width: 100%;
+    font-size: x-large;
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    border: none;
+}
+.config-home input[type=submit]:hover{
+    background-color: var(--color-blue);
+}
+
 /*purchase_auth--------------------------------*/
 /*order_list*/
-
-
 .orders-list{
     display: grid;
     padding: 10px;
