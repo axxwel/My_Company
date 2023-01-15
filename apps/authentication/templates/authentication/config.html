@@ -20,12 +20,12 @@
                     <form method="post">  
                         {% csrf_token %} 
                     <tr>
-                        <td value="value">{{ new_company.name }}</td>
-                        <td value="value">{{ new_company.controler_login }}</td>
-                        <td value="value">{{ new_company.super_controler_login }}</td>
+                        <td value="value">{{ company_form.name }}</td>
+                        <td value="value">{{ company_form.controler_login }}</td>
+                        <td value="value">{{ company_form.super_controler_login }}</td>
                         <td value="btn-col">
-                            {{ new_company.new_company }}
-                            <input type="submit" name="new_company" value="+">
+                            {{ company_form.add_company }}
+                            <input type="submit" value="+">
                         </td>
                     </tr>
                     </form>
@@ -49,25 +49,23 @@
                     <tr>
                         <th>Branch</th>
                         <th>Company</th>
-                        <th>Controler_login</th>
+                        <th>Controler login</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="" method="post">   
-                        {% csrf_token %}
-                        {{ new_branch.as_p }}
-                        <input type="submit" name="new_branch" value="+">
-                    </form>
-                    <!-- <tr>
-                        <td value="value">{{ new_branch.name }}</td>
-                        <td value="value">{{ new_branch.company }}</td>
-                        <td value="value">{{ new_branch.controler_login }}</td>
+                    <form method="post">  
+                        {% csrf_token %} 
+                    <tr>
+                        <td value="value">{{ branch_form.name }}</td>
+                        <td value="value">{{ branch_form.company }}</td>
+                        <td value="value">{{ branch_form.controler_login }}</td>
                         <td value="btn-col">
-                            {{ new_branch.new_branch }}
-                            
+                            {{ branch_form.add_branch }}
+                            <input type="submit" value="+">
                         </td>
-                    </tr> -->
+                    </tr>
+                    </form>
                 </tbody>
                 <tbody>
                     {% for branch in branchs %}
@@ -81,26 +79,30 @@
                 </tbody>
             </table>
         </div>
-        <!-- <div class="box">
+        <div class="box">
             <h3>Users</h3>
             <table>
                 <thead>
                     <tr>
-                        <th>name</th>
-                        <th>branch</th>
+                        <th>Login</th>
+                        <th>Branch</th>
                         <th></th>
                         <th value="btn-col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="" method="post">
+                    <form method="post">
                         {% csrf_token %}
                     <tr>
-                        <td value="value">{{ new_user.username }}</td>
+                        <td value="value">{{ user_form.username }}</td>
                         <td value="value"></td>
                         <td value="value"></td>
-                        <td value="btn-col"><input type="submit" name="new_user" value="+"></td>
+                        <td value="btn-col">
+                            {{ user_form.add_user }}
+                            <input type="submit" value="+">
+                        </td>
                     </tr>
+                    </form>
                 </tbody>
                 <tbody>
                     {% for user in users %}
@@ -113,7 +115,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div> -->
+        </div>
     </div>
-</div>    
+</div>
 {% endblock %}

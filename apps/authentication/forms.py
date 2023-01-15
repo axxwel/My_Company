@@ -6,9 +6,9 @@ from authentication.models import Company, Branch, User
 
 
 class SignupForm(UserCreationForm):
-    username = forms.CharField(max_length=32, help_text='')
-    password1 = forms.EmailField(max_length=64, label='Password', help_text='')
-    password2 = forms.EmailField(max_length=64, label='Password confirmation', help_text='')
+    username = forms.CharField(max_length=6, help_text='')
+    password1 = forms.CharField(max_length=63, widget=forms.PasswordInput, label='password')
+    password2 = forms.CharField(max_length=63, widget=forms.PasswordInput, label='password confirmation')
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
@@ -19,8 +19,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(max_length=63, widget=forms.PasswordInput, label='password')
 
 class CompanyForm(forms.ModelForm):
-    new_company = forms.BooleanField(widget=forms.HiddenInput, initial=True)
-
+    add_company = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
         model = Company
         fields = [
@@ -30,8 +29,7 @@ class CompanyForm(forms.ModelForm):
         ]
 
 class BranchForm(forms.ModelForm):
-    new_branch = forms.BooleanField(widget=forms.HiddenInput, initial=True)
-
+    add_branch = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
         model = Branch
         fields = [
@@ -42,8 +40,7 @@ class BranchForm(forms.ModelForm):
         ]
 
 class UserForm(forms.ModelForm):
-    new_user = forms.BooleanField(widget=forms.HiddenInput, initial=True)
-
+    add_user = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
         model = User
         fields = [

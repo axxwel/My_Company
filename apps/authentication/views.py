@@ -49,65 +49,41 @@ def logout_user(request):
     return redirect('login')
 
 #staff administration====================================================================
-
 @login_required
 def config_home(request):
     companys=Company.objects.filter()
     branchs=Branch.objects.filter()
+    users=User.objects.filter()
 
-    new_company = CompanyForm()
-    new_branch = BranchForm()
+    company_form = forms.CompanyForm()
+    branch_form = forms.BranchForm()
+    user_form = forms.UserForm()
 
     if request.method == 'POST':
-        if 'new_company' in request.POST:
-            new_company = forms.CompanyForm(request.POST)
-            if new_company.is_valid():
-                new_company.save()
+        if 'add_company' in request.POST:
+            company_form = forms.CompanyForm(request.POST)
+            if company_form.is_valid():
+                company_form.save()
                 return redirect('config-home')
         
-        if 'new_branch' in request.POST:
-            new_branch = forms.CompanyForm(request.POST)
-            if new_branch.is_valid():
-                new_branch.save()
+        if 'add_branch' in request.POST:
+            branch_form = forms.BranchForm(request.POST)
+            if branch_form.is_valid():
+                branch_form.save()
+                return redirect('config-home')
+
+        if 'add_user' in request.POST:
+            user_form = forms.UserForm(request.POST)
+            if user_form.is_valid():
+                user_form.save()
                 return redirect('config-home')
 
     context={
-    'companys': companys, 'new_company': new_company,
-    'branchs': branchs, 'new_branch': new_branch}
+    'companys': companys,
+    'company_form': company_form,
+    'branchs': branchs,
+    'branch_form': branch_form,
+    'users': users,
+    'user_form': user_form,}
 
     return render(request,'authentication/config.html',context=context)
-
-
-""" def config_home(request):
-    companys=Company.objects.filter()
-    branchs=Branch.objects.filter()
-    users=User.objects.filter()
-
-    new_company = CompanyForm()
-    new_branch = BranchForm()
-    new_user = UserForm()
-
-    if request.method == 'POST':
-        if 'new_company' in request.POST:
-            new_company = forms.CompanyForm(request.POST)
-            if new_company.is_valid():
-                new_company.save()
-                return redirect('config-home')
-
-        if 'new_branch' in request.POST:
-            new_branch = forms.BranchForm(request.POST)
-            if new_branch.is_valid():
-                new_branch.save()
-                return redirect('config-home')
-
-        if 'new_user' in request.POST:
-            new_user = forms.UserForm(request.POST)
-            if new_user.is_valid():
-                new_user.save()
-                return redirect('config-home')
-
-    return render(request,
-    'authentication/config.html',
-    {'companys': companys, 'new_company': new_company,
-    'branchs': branchs, 'new_branch': new_branch,
-    'users': users, 'new_user': new_user}) """
