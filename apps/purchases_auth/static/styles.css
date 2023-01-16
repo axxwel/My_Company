@@ -92,45 +92,50 @@ nav li a{
 }
 
 /*configuration*/
-.config-home{
+.config{
     display: grid;
     padding: 10px;
 }
-.config-home table{
+.config table{
     width: 100%;
 }
-.config-home .box{
+.config .box{
     padding: 10px;
     margin-bottom: 10px;
     background-color: var(--color-beige);
 }
-.config-home div{
+.config div{
     padding: 10px;
 }
-.config-home td, .config-home th{
+.config td, .config th{
     text-align: left;
     padding: 5px;
 }
-.config-home h3{
+.config h3{
     padding: 15px;
     text-align: center;
     color: white;
     background-color: var(--color-gray);
 }
-.config-home td{
+.config td{
     background-color: var(--color-orange);
     width: 32%;
 }
-.config-home td[value="value"]{
+.config .threshold td{
+    background-color: var(--color-orange);
+    height: 200px;
+    width: 32%;
+}
+.config td[value="value"]{
     background-color: white;
     padding: 0px;
 }
-.config-home td[value="btn-col"]{
+.config td[value="btn-col"]{
     background-color: var(--color-beige);
     padding: 0px;
     width: 30%;
 }
-.config-home select, .config-home input{
+.config select, .config input{
     background-color: white;
     padding: 0px;
     margin: 0px;
@@ -138,7 +143,7 @@ nav li a{
     width: 100%;
     height: 2em;
 }
-.config-home input[type=submit]{
+.config input[type=submit]{
     width: 100%;
     height: 1em;
     font-size: x-large;
@@ -147,7 +152,7 @@ nav li a{
     text-align: center;
     border: none;
 }
-.config-home input[type=submit]:hover{
+.config input[type=submit]:hover{
     background-color: var(--color-blue);
 }
 

@@ -20,6 +20,8 @@ import authentication.views
 from purchases_auth import views
 
 urlpatterns = [
+#API REST
+    #path('api-auth/', include('rest_framework.urls'))
 #Administration
     path('admin/', admin.site.urls),
 #Authentication
@@ -33,4 +35,5 @@ urlpatterns = [
     path('order/<int:id>/', views.order_detail, name='order-detail'),
     path('order/<int:id>/pending', views.order_detail, name='order-pending'),
     path('order/add/', views.order_create, name='order-create'),
+    path('order/config/', views.order_config, name='order-config'),
 ]

@@ -23,6 +23,13 @@
         </header>
         <div class = "main">
             <nav>
+                <p>My_company</p>
+                <ul>
+                    <li>
+                        <a href="{% url 'config-home' %}">Configuration</a>
+                    </li>
+                </ul>
+                <p>Purchases authorisation</p>
                 <ul>
                     <li>
                         <a href="{% url 'order-list' %}">Order list</a>
@@ -30,10 +37,8 @@
                     <li>
                         <a href="{% url 'order-create' %}">Create order</a>
                     </li>
-                </ul>
-                <ul>
                     <li>
-                        <a href="{% url 'config-home' %}">Configuration</a>
+                        <a href="{% url 'order-config' %}">Order configuration</a>
                     </li>
                 </ul>
             </nav>
