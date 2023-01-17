@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from django.views.generic import View
 
@@ -33,47 +33,41 @@ class LoginPageView(View):
         message = 'Identifiants invalides.'
         return render(request, self.template_name, context={'form': form, 'message': message})
 
-def signup_page(request):
-    form = forms.SignupForm()
-    if request.method == 'POST':
-        form = forms.SignupForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            # auto-login user
-            login(request, user)
-            return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, 'authentication/signup.html', context={'form': form})
-
 def logout_user(request):
     logout(request)
     return redirect('login')
 
+#staff authentification==================================================================
+def in_group(user, group_name):
+    return user.groups.filter(name=group_name).exists()
+
 #staff administration====================================================================
+@user_passes_test(lambda u: in_group(u, 'staff_admin'))
 @login_required
 def config_home(request):
     companys=Company.objects.filter()
     branchs=Branch.objects.filter()
     users=User.objects.filter()
 
-    company_form = forms.CompanyForm()
-    branch_form = forms.BranchForm()
-    user_form = forms.UserForm()
+    company_form = CompanyForm()
+    branch_form = BranchForm()
+    user_form = UserForm()
 
     if request.method == 'POST':
         if 'add_company' in request.POST:
-            company_form = forms.CompanyForm(request.POST)
+            company_form = CompanyForm(request.POST)
             if company_form.is_valid():
                 company_form.save()
                 return redirect('config-home')
         
         if 'add_branch' in request.POST:
-            branch_form = forms.BranchForm(request.POST)
+            branch_form = BranchForm(request.POST)
             if branch_form.is_valid():
                 branch_form.save()
                 return redirect('config-home')
 
         if 'add_user' in request.POST:
-            user_form = forms.UserForm(request.POST)
+            user_form = UserForm(request.POST)
             if user_form.is_valid():
                 user_form.save()
                 return redirect('config-home')

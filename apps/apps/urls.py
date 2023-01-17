@@ -26,7 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 #Authentication
     path('', authentication.views.LoginPageView.as_view() , name='login'),
-    path('signup/', authentication.views.signup_page, name='signup'),
     path('logout/', authentication.views.logout_user, name='logout'),
 #Configuration
     path('config/', authentication.views.config_home, name='config-home'),

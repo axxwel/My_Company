@@ -46,7 +46,7 @@ class PurchaseTypeForm(forms.ModelForm):
         ]
 
 class ProcessForm(forms.ModelForm):
-    add_processs_form = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+    add_process = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
         model = Process
         fields = [

@@ -5,7 +5,7 @@
 {% block content %}
 <div class="config">
     <div>
-        <div class="box">
+        <div class="box-half">
             <h3>Payment method</h3>
             <table>
                 <thead>
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="box">
+        <div class="box-half">
             <h3>Purchase type</h3>
             <table>
                 <thead>
@@ -89,12 +89,12 @@
                         <td value="value">{{ process_form.name }}</td>
                         <td value="value">{{ process_form.company }}</td>
                         <td value="value">{{ process_form.branch }}</td>
-                        <td value="value">{{ process_form.Purchases_type }}</td>
+                        <td value="value">{{ process_form.Purchase_type }}</td>
                         <td value="value">{{ process_form.company_threshold }}</td>
                         <td value="value">{{ process_form.branch_threshold }}</td>
                         <td value="value">{{ process_form.process_threshold }}</td>
                         <td value="btn-col">
-                            {{ process_form.add_process_form }}
+                            {{ process_form.add_process }}
                             <input type="submit" value="+">
                         </td>
                     </tr>
@@ -103,9 +103,13 @@
                 <tbody>
                     {% for process in process %}
                     <tr>
+                        <td>{{ process.name }}</td>
                         <td>{{ process.company }}</td>
                         <td>{{ process.branch }}</td>
-                        <td>{{ process.Purchases_type }}</td>
+                        <td>{{ process.Purchase_type }}</td>
+                        <td>{{ process.company_threshold }}</td>
+                        <td>{{ process.branch_threshold }}</td>
+                        <td>{{ process.process_threshold }}</td>
                         <td value="btn-col"></td>
                     </tr>
                     {% endfor %}

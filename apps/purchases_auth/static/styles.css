@@ -77,19 +77,6 @@ nav li a{
     border: 1px solid black;
     padding: 20px;
 }
-.signup{
-    display: flex;
-    justify-content: center;
-}
-.signup div{
-    text-align: center;   
-    width: 30%;
-    border: 1px solid black;
-    padding: 20px;
-}
-.signup div p{   
-    text-align: left;
-}
 
 /*configuration*/
 .config{
@@ -104,6 +91,7 @@ nav li a{
     margin-bottom: 10px;
     background-color: var(--color-beige);
 }
+
 .config div{
     padding: 10px;
 }
@@ -119,12 +107,11 @@ nav li a{
 }
 .config td{
     background-color: var(--color-orange);
-    width: 32%;
+    width: 13.7%;
 }
 .config .threshold td{
     background-color: var(--color-orange);
-    height: 200px;
-    width: 32%;
+    width: 13.7%;
 }
 .config td[value="value"]{
     background-color: white;
@@ -133,7 +120,7 @@ nav li a{
 .config td[value="btn-col"]{
     background-color: var(--color-beige);
     padding: 0px;
-    width: 30%;
+    width: 2em;
 }
 .config select, .config input{
     background-color: white;
@@ -155,6 +142,22 @@ nav li a{
 .config input[type=submit]:hover{
     background-color: var(--color-blue);
 }
+.config .box-half{
+    display: inline-block;
+    justify-content: left;
+    width: 48.4%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--color-beige);
+}
+.config .box-half td{
+    width: 91%;
+}
+.config .cie-set td{
+    width: 30%;
+}
+
+
 
 /*purchase_auth--------------------------------*/
 /*order_list*/

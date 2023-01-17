@@ -1,6 +1,6 @@
 import datetime
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 from purchases_auth.models import Order, Payment_method, Purchase_type, Process
 from purchases_auth.forms import Order_form, Order_auth, PaymentMethodForm, PurchaseTypeForm, ProcessForm
@@ -98,10 +98,10 @@ def order_config(request):
                 purchase_type_form.save()
                 return redirect('order-config')
 
-        if 'add_processs_form' in request.POST:
+        if 'add_process' in request.POST:
             process_form = ProcessForm(request.POST)
-            if processs_form.is_valid():
-                processs_form.save()
+            if process_form.is_valid():
+                process_form.save()
                 return redirect('order-config')
 
     context={
