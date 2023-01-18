@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from purchases_auth.models import Order, Payment_method, Purchase_type, Process
 from purchases_auth.forms import Order_form, Order_auth, PaymentMethodForm, PurchaseTypeForm, ProcessForm
 
+from purchases_auth.mail import OrderAuthEmail
+
 @login_required
 def order_list(request):
     asker_order =Order.objects.filter(asker_login=request.user.id)
@@ -25,7 +27,7 @@ def order_create(request):
     except NameError: day = datetime.datetime.now().day 
     try: 
         if count is not None: pass
-    except NameError: count = 0                            
+    except NameError: count = 10                            
     
     filled_day=day
     filled_count=count
@@ -37,6 +39,7 @@ def order_create(request):
 
     filled_field.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{filled_count:03d}'
     filled_field.date=datetime.datetime.now()
+
     filled_field.asker_login = request.user
 
     if request.method == 'POST':
@@ -65,7 +68,7 @@ def order_detail(request, id):
     order = Order.objects.get(id=id)
     controler_order =Order.objects.filter(id=id, controler_login=request.user.id, controler_auth="Pending")
     auth = Order_auth(request.POST, instance=order)
-    
+
     if request.method == 'POST':
         if auth.is_valid():
             auth.save()
