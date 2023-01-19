@@ -14,8 +14,8 @@ class CompanyForm(forms.ModelForm):
         model = Company
         fields = [
             'name',
-            'controler_login',
-            'super_controler_login'
+            'controler',
+            'super_controler'
         ]
 
 class BranchForm(forms.ModelForm):
@@ -25,7 +25,7 @@ class BranchForm(forms.ModelForm):
         fields = [
             'name',
             'company',
-            'controler_login',
+            'controler',
             'members',
         ]
 
@@ -34,8 +34,7 @@ class UserForm(UserCreationForm):
     password1 = forms.CharField(max_length=63, widget=forms.PasswordInput, label='password')
     password2 = forms.CharField(max_length=63, widget=forms.PasswordInput, label='password confirmation')
 
-    company = forms.ChoiceField(choices=[(c.id, c.name) for c in Company.objects.all()])
-    branch = forms.ChoiceField(choices=[(b.id, b.name) for b in Branch.objects.all()])
+    
 
     add_user = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
@@ -43,7 +42,7 @@ class UserForm(UserCreationForm):
         fields = [
             'username',
             'email',
-            'branch',
+            
             'password1',
             'password2'
         ]

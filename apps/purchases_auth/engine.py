@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 
 from authentication.models import Company, Branch, User
-from purchases_auth.models import Order
+from purchases_auth.models import Process, Order
 
 class Engine:
     def order_temp(user_id):
@@ -36,7 +36,29 @@ class Engine:
 
         return order_temp
 
+    def define_controler(id):
+        order=Order.objects.get(id=id)
+        process=Process.objects.filter(id=order.process)
+        branch=Branch.objects.filter(id=order.branch)
+        company=Company.objects.filter(id=branch.company)
 
+        controler=process.controler
+        controler_copy=[]
+
+        if(order.price>process.process_threshold):
+            controler=branch.controler
+            controler_copy.append(process.controler)
+
+        if(order.price>process.branch_threshold):
+            controler=company.controler
+            controler_copy.append(branch.controler)
+
+        if(order.price>process.company_threshold):
+            controler=company.super_controler
+            controler_copy.append(company.controler)
+
+        return controler, controler_copy
+            
     def send_mail(id):
         order = Order.objects.get(id=id)
 

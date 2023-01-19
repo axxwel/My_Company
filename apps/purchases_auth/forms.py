@@ -53,7 +53,7 @@ class ProcessForm(forms.ModelForm):
             'name',
             'company',
             'branch',
-            'Purchase_type',
+            'purchase_type',
             'company_threshold',
             'branch_threshold',
             'process_threshold',

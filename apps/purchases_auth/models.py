@@ -18,12 +18,14 @@ class Process(models.Model):
         return f'{self.name}'
     
     name = models.fields.CharField(max_length=30, unique=True)
-    Purchase_type = models.ForeignKey(Purchase_type, on_delete=models.CASCADE)
+
+    purchase_type = models.ForeignKey(Purchase_type, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     company_threshold = models.fields.IntegerField(default=6000)
     branch_threshold = models.fields.IntegerField(default=1000)
     process_threshold = models.fields.IntegerField(default=500)
+    controler = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='process_controler')
 
 class Order(models.Model):
     def __str__(self):

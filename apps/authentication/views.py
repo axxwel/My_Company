@@ -5,10 +5,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from django.views.generic import View
 
-from authentication.forms import LoginForm, CompanyForm, BranchForm, UserForm
 from authentication.models import Company, Branch, User
-
-from . import forms
+from authentication.forms import LoginForm, CompanyForm, BranchForm
 
 #user authetification===================================================
 class LoginPageView(View):
@@ -42,7 +40,9 @@ def in_group(user, group_name):
     return user.groups.filter(name=group_name).exists()
 
 #staff administration====================================================================
-@user_passes_test(lambda u: in_group(u, 'staff_admin'))
+#
+from authentication.forms import UserForm
+# @user_passes_test(lambda u: in_group(u, 'staff_admin'))
 @login_required
 def config_home(request):
     companys=Company.objects.filter()
