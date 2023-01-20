@@ -19,6 +19,7 @@
                         {% csrf_token %} 
                     <tr>
                         <td value="value">{{ payment_method_form.name }}</td>
+                        <td value="value">{{ payment_method_form.controler }}</td>
                         <td value="btn-col">
                             {{ payment_method_form.add_payment_method }}
                             <input type="submit" value="+">
@@ -30,6 +31,7 @@
                     {% for payment_method in payment_methods %}
                     <tr>
                         <td>{{ payment_method.name }}</td>
+                        <td>{{ payment_method.controler }}</td>
                         <td value="btn-col"></td>
                     </tr>
                     {% endfor %}
@@ -89,7 +91,7 @@
                         <td value="value">{{ process_form.name }}</td>
                         <td value="value">{{ process_form.company }}</td>
                         <td value="value">{{ process_form.branch }}</td>
-                        <td value="value">{{ process_form.Purchase_type }}</td>
+                        <td value="value">{{ process_form.purchase_type }}</td>
                         <td value="value">{{ process_form.company_threshold }}</td>
                         <td value="value">{{ process_form.branch_threshold }}</td>
                         <td value="value">{{ process_form.process_threshold }}</td>

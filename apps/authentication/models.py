@@ -1,12 +1,10 @@
 from django.db import models
-from django.db.models.signals import post_migrate
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     def __str__(self):
         return f'{self.username}'
-    user_permissions=None
-
+    
 class App_admin(models.Model):
     def __str__(self):
         return f'{self.app_name}'
@@ -17,8 +15,8 @@ class Company(models.Model):
     def __str__(self):
         return f'{self.name}'
     name = models.fields.CharField(max_length=30, unique=True)
-    controler = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='company_controler')
-    super_controler = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='company_super_controler')
+    controler = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='company_controler')
+    super_controler = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='company_super_controler')
 
 class Branch(models.Model):
     def __str__(self):
@@ -28,7 +26,7 @@ class Branch(models.Model):
     controler = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='branch_controler')
     members = models.ManyToManyField(User, blank=True)
 
-def populate_data(sender, **kwargs):
+""" def populate_data(sender, **kwargs):
     password='Soleil1234'
 
     # Create a user
@@ -65,4 +63,4 @@ def populate_data(sender, **kwargs):
     branch_B.members.add(controler_B)
     branch_B.members.add(user_B)
 
-    post_migrate.connect(populate_data, sender='authentication')
+    post_migrate.connect(populate_data, sender='authentication') """

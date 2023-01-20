@@ -22,8 +22,8 @@
                         {% csrf_token %} 
                     <tr>
                         <td value="value">{{ company_form.name }}</td>
-                        <td value="value">{{ company_form.controler_login }}</td>
-                        <td value="value">{{ company_form.super_controler_login }}</td>
+                        <td value="value">{{ company_form.controler}}</td>
+                        <td value="value">{{ company_form.super_controler }}</td>
                         <td value="btn-col">
                             {{ company_form.add_company }}
                             <input type="submit" value="+">
@@ -35,8 +35,8 @@
                     {% for company in companys %}
                     <tr>
                         <td>{{ company.name }}</td>
-                        <td>{{ company.controler_login }}</td>
-                        <td>{{ company.super_controler_login }}</td>
+                        <td>{{ company.controler }}</td>
+                        <td>{{ company.super_controler }}</td>
                         <td value="btn-col"></td>
                     </tr>
                     {% endfor %}
@@ -62,7 +62,7 @@
                     <tr>
                         <td value="value">{{ branch_form.name }}</td>
                         <td value="value">{{ branch_form.company }}</td>
-                        <td value="value">{{ branch_form.controler_login }}</td>
+                        <td value="value">{{ branch_form.controler }}</td>
                         <td value="btn-col">
                             {{ branch_form.add_branch }}
                             <input type="submit" value="+">
@@ -75,7 +75,7 @@
                     <tr>
                         <td>{{ branch.name }}</td>
                         <td>{{ branch.company }}</td>
-                        <td>{{ branch.controler_login }}</td>
+                        <td>{{ branch.controler }}</td>
                         <td value="btn-col"></td>
                     </tr>
                     {% endfor %}

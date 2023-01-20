@@ -7,6 +7,7 @@ class Payment_method(models.Model):
     def __str__(self):
         return f'{self.name}'
     name = models.fields.CharField(max_length=30, unique=True)
+    controler = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='payment_method_controler')
 
 class Purchase_type(models.Model):
     def __str__(self):

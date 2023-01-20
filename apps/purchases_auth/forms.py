@@ -35,6 +35,7 @@ class PaymentMethodForm(forms.ModelForm):
         model = Payment_method
         fields = [
             'name',
+            'controler',
         ]
 
 class PurchaseTypeForm(forms.ModelForm):
