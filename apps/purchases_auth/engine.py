@@ -7,9 +7,9 @@ from authentication.models import Company, Branch, User
 from purchases_auth.models import Process, Order
 
 class Engine:
-    def order_temp(user_id):
+    def order_temp(request_user):
         order_temp = Order()
-        user = User.objects.filter(id=user_id)
+        user = request_user
 
         global day
         global count
@@ -29,7 +29,7 @@ class Engine:
         else:
             count_temp+=1
 
-        order_temp.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{filled_count:03d}'
+        order_temp.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{count_temp:03d}'
         order_temp.date=datetime.datetime.now()
 
         order_temp.asker_login = user
@@ -37,27 +37,30 @@ class Engine:
         return order_temp
 
     def define_controler(id):
-        order=Order.objects.get(id=id)
-        process=Process.objects.filter(id=order.process)
-        branch=Branch.objects.filter(id=order.branch)
-        company=Company.objects.filter(id=branch.company)
+        order = Order.objects.get(id=id)
+        process=order.process
+        branch=order.branch
+        company=Branch.objects.get(id=branch.id).company
 
         controler=process.controler
         controler_copy=[]
 
         if(order.price>process.process_threshold):
             controler=branch.controler
-            controler_copy.append(process.controler)
+            order.notified_controler.add(process.controler)
 
         if(order.price>process.branch_threshold):
             controler=company.controler
-            controler_copy.append(branch.controler)
+            order.notified_controler.add(branch.controler)
 
         if(order.price>process.company_threshold):
             controler=company.super_controler
-            controler_copy.append(company.controler)
+            order.notified_controler.add(company.controler)
 
-        return controler, controler_copy
+        if(order.payment_method=='Card'):
+            order.notified_controler.add(company.controler)
+
+        order.controler_login = controler
             
     def send_mail(id):
         order = Order.objects.get(id=id)

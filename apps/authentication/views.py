@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.generic import View
 
 from authentication.models import Company, Branch, User
-from authentication.forms import LoginForm, CompanyForm, BranchForm
+from authentication.forms import LoginForm, CompanyForm, BranchForm, UserForm
 
 #user authetification===================================================
 class LoginPageView(View):
@@ -40,8 +40,7 @@ def in_group(user, group_name):
     return user.groups.filter(name=group_name).exists()
 
 #staff administration====================================================================
-#
-from authentication.forms import UserForm
+
 # @user_passes_test(lambda u: in_group(u, 'staff_admin'))
 @login_required
 def config_home(request):
@@ -69,8 +68,9 @@ def config_home(request):
         if 'add_user' in request.POST:
             user_form = UserForm(request.POST)
             if user_form.is_valid():
-                user_form.save()
-                return redirect('config-home')
+                if user_form.company==user_form.branch.company:
+                    user_form.save()
+                    return redirect('config-home')
 
     context={
     'companys': companys,

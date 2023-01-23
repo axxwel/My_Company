@@ -90,7 +90,7 @@
                     <tr>
                         <th>Login</th>
                         <th>email</th>
-                        <th>Company</th>
+                        <th>company</th>
                         <th>branch</th>
                         <th>password</th>
                         <th>confirm</th>
@@ -103,7 +103,7 @@
                     <tr>
                         <td value="value">{{ user_form.username }}</td>
                         <td value="value">{{ user_form.email }}</td>
-                        <td value="value">{{ user_form.company }}</td>
+                        <td value="value">{{ user_form.company}}</td>
                         <td value="value">{{ user_form.branch }}</td>
                         <td value="value">{{ user_form.password1 }}</td>
                         <td value="value">{{ user_form.password2 }}</td>
@@ -119,35 +119,13 @@
                     <tr>
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
-                        <td>
-                            {% for user_branch in user.branch_set.all %}
-                            {{ user_branch.company }} ,
-                            {% endfor %}
-                        </td>
-                        <td>
-                            {% for user_branch in user.branch_set.all %}
-                            {{ user_branch.name }} ,
-                            {% endfor %}
-                        </td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ user.company }}</td>
+                        <td>{{ user.branch }}</td>
+                        <td>{{ user.password1 }}</td>
+                        <td>{{ user.password2 }}</td>
                         <td value="btn-col">
-                            <button class="edit-button" data-user-id="{{ user.id }}">Edit</button>
+                            
                         </td>
-                    </tr>
-                    <tr class="edit-form" data-user-id="{{ user.id }}">
-                        <form method="post">
-                            <td value="value">{{ user_form.username }}</td>
-                            <td value="value">{{ user_form.email }}</td>
-                            <td value="value">{{ user_form.company }}</td>
-                            <td value="value">{{ user_form.branch }}</td>
-                            <td value="value">{{ user_form.password1 }}</td>
-                            <td value="value">{{ user_form.password2 }}</td>
-                            <td value="btn-col">
-                                {{ user_form.add_user }}
-                                <input type="submit" value="+">
-                            </td>
-                        </form>
                     </tr>
                     {% endfor %}
                 </tbody>

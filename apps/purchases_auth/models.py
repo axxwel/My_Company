@@ -58,6 +58,7 @@ class Order(models.Model):
     delivery_date = models.fields.DateField()
 
     controler_login = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='order_controler')
+    notified_controler = models.ManyToManyField(User, blank=True, related_name='notified_controler')
 
     controler_auth = models.fields.CharField(choices=auth_status.choices, default=auth_status.PENDING, max_length=10)
     controler_comment = models.fields.TextField(max_length = 100, blank=True)

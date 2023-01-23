@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from purchases_auth.models import Order, Payment_method, Purchase_type, Process
 from purchases_auth.forms import Order_form, Order_auth, PaymentMethodForm, PurchaseTypeForm, ProcessForm
 
-from purchases_auth.mail import OrderAuthEmail
+from purchases_auth.engine import Engine
 
 @login_required
 def order_list(request):
@@ -18,42 +18,18 @@ def order_list(request):
 
 @login_required
 def order_create(request):
-    filled_field = Order()
-
-    global day
-    global count
-    try: 
-        if day is not None: pass
-    except NameError: day = datetime.datetime.now().day 
-    try: 
-        if count is not None: pass
-    except NameError: count = 10                            
-    
-    filled_day=day
-    filled_count=count
-    if(day != datetime.datetime.now().day):
-        filled_day=datetime.datetime.now().day
-        filled_count=1
-    else:
-        filled_count=count+1
-
-    filled_field.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{filled_count:03d}'
-    filled_field.date=datetime.datetime.now()
-
-    filled_field.asker_login = request.user
+    order_temp = Engine.order_temp(request.user)
 
     if request.method == 'POST':
         order_form = Order_form(request.POST)
         if order_form.is_valid():
             
-            day=filled_day
-            count=filled_count
-
             order = order_form.save(commit=False)
-            order.order_id=filled_field.order_id
-            order.date=filled_field.date
-            order.asker_login=filled_field.asker_login
+            order.order_id=order_temp.order_id
+            order.date=order_temp.date
+            order.asker_login=order_temp.asker_login
             order.save()
+            Engine.define_controler(order.id)
 
             return redirect('order-detail', order.id)
     else:
@@ -61,7 +37,7 @@ def order_create(request):
 
     return render(request,
     'purchases_auth/order_create.html',
-    {'order_form': order_form, 'filled_field': filled_field})
+    {'order_form': order_form, 'order_temp': order_temp})
 
 @login_required
 def order_detail(request, id):
