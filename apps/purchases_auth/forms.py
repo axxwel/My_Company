@@ -9,7 +9,6 @@ class Order_form(forms.ModelForm):
     class Meta:
         model = Order
         fields = [
-            'branch',
             'process',
             'purchase_type',
             'payment_method',
@@ -58,4 +57,5 @@ class ProcessForm(forms.ModelForm):
             'company_threshold',
             'branch_threshold',
             'process_threshold',
+            'controler',
         ]

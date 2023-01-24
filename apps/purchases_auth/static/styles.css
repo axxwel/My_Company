@@ -107,11 +107,11 @@ nav li a{
 }
 .config td{
     background-color: var(--color-orange);
-    width: 13.7%;
+    width: 11%;
 }
 .config .threshold td{
     background-color: var(--color-orange);
-    width: 13.7%;
+    width: 11%;
 }
 .config td[value="value"]{
     background-color: white;

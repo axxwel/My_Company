@@ -137,5 +137,5 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'order-list'
 
 # counter variable
-today = 0
-count = 0
+GLOBAL_DAY = None
+GLOBAL_COUNT = None

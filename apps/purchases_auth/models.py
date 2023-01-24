@@ -20,9 +20,9 @@ class Process(models.Model):
     
     name = models.fields.CharField(max_length=30, unique=True)
 
-    purchase_type = models.ForeignKey(Purchase_type, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, null=True, on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, null=True, on_delete=models.CASCADE)
+    purchase_type = models.ForeignKey(Purchase_type, null=True, on_delete=models.CASCADE)
     company_threshold = models.fields.IntegerField(default=6000)
     branch_threshold = models.fields.IntegerField(default=1000)
     process_threshold = models.fields.IntegerField(default=500)
@@ -41,11 +41,10 @@ class Order(models.Model):
     date = models.fields.DateField(auto_now=True)
 
     asker_login = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     
     purchase_type = models.ForeignKey(Purchase_type, on_delete=models.CASCADE)
-    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     process = models.ForeignKey(Process, on_delete=models.CASCADE)
-
     payment_method = models.ForeignKey(Payment_method, on_delete=models.CASCADE)
 
     product = models.fields.CharField(max_length=17)

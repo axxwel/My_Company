@@ -68,8 +68,9 @@ def config_home(request):
         if 'add_user' in request.POST:
             user_form = UserForm(request.POST)
             if user_form.is_valid():
-                if user_form.company==user_form.branch.company:
-                    user_form.save()
+                user_temp = user_form.save(commit=False)
+                if user_temp.company==user_temp.branch.company:
+                    user_temp.save()
                     return redirect('config-home')
 
     context={

@@ -1,4 +1,7 @@
 import datetime
+import logging
+
+from django.conf import settings
 
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
@@ -7,37 +10,36 @@ from authentication.models import Company, Branch, User
 from purchases_auth.models import Process, Order
 
 class Engine:
+
     def order_temp(request_user):
         order_temp = Order()
         user = request_user
 
-        global day
-        global count
-        
-        try: 
-            if day is not None: pass
-        except NameError: day = datetime.datetime.now().day 
-        try: 
-            if count is not None: pass
-        except NameError: count = 1                            
-    
-        day_temp=day
-        count_temp=count
-        if(day_temp != datetime.datetime.now().day):
-            day_temp=datetime.datetime.now().day
-            count_temp=1
-        else:
-            count_temp+=1
+        logging.warning("test_engine_orderTemp",settings.GLOBAL_DAY,settings.GLOBAL_COUNT)
 
-        order_temp.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-%d-")+f'{count_temp:03d}'
+        if settings.GLOBAL_DAY is None:
+            settings.GLOBAL_DAY=datetime.datetime.now().day
+         
+        if settings.GLOBAL_COUNT is None:                       
+            settings.GLOBAL_COUNT = 1
+
+        if(settings.GLOBAL_DAY != datetime.datetime.now().day):
+            settings.GLOBAL_DAY=datetime.datetime.now().day
+            settings.GLOBAL_COUNT = 1
+
+        order_temp.order_id="AA"+datetime.datetime.now().strftime("%Y-%m-")+f'{settings.GLOBAL_DAY}-{settings.GLOBAL_COUNT:03d}'
         order_temp.date=datetime.datetime.now()
 
         order_temp.asker_login = user
+        order_temp.branch = user.branch
 
         return order_temp
-
+        
     def define_controler(id):
         order = Order.objects.get(id=id)
+
+        logging.warning("test_engine",order.branch.company,order.branch)
+
         process=order.process
         branch=order.branch
         company=Branch.objects.get(id=branch.id).company

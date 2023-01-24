@@ -81,6 +81,7 @@
                         <th>Company threshold</th>
                         <th>Branch threshold</th>
                         <th>Process threshold</th>
+                        <th>controler</th>
                         <th value="btn-col"></th>
                     </tr>
                 </thead>
@@ -95,6 +96,7 @@
                         <td value="value">{{ process_form.company_threshold }}</td>
                         <td value="value">{{ process_form.branch_threshold }}</td>
                         <td value="value">{{ process_form.process_threshold }}</td>
+                        <td value="value">{{ process_form.controler }}</td>
                         <td value="btn-col">
                             {{ process_form.add_process }}
                             <input type="submit" value="+">
@@ -112,6 +114,7 @@
                         <td>{{ process.company_threshold }}</td>
                         <td>{{ process.branch_threshold }}</td>
                         <td>{{ process.process_threshold }}</td>
+                        <td>{{ process.controler }}</td>
                         <td value="btn-col"></td>
                     </tr>
                     {% endfor %}

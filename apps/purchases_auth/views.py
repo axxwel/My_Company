@@ -1,4 +1,8 @@
 import datetime
+import logging
+
+from django.conf import settings
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -18,21 +22,29 @@ def order_list(request):
 
 @login_required
 def order_create(request):
-    order_temp = Engine.order_temp(request.user)
 
+    order_temp = Engine.order_temp(request.user)
+    
     if request.method == 'POST':
         order_form = Order_form(request.POST)
+        logging.warning(order_form,order_temp.branch)
         if order_form.is_valid():
             
             order = order_form.save(commit=False)
             order.order_id=order_temp.order_id
             order.date=order_temp.date
             order.asker_login=order_temp.asker_login
+            order.branch=order_temp.branch
+            
             order.save()
+
+            settings.GLOBAL_COUNT+=1
             Engine.define_controler(order.id)
 
             return redirect('order-detail', order.id)
+
     else:
+        
         order_form = Order_form()
 
     return render(request,
@@ -80,8 +92,10 @@ def order_config(request):
         if 'add_process' in request.POST:
             process_form = ProcessForm(request.POST)
             if process_form.is_valid():
-                process_form.save()
-                return redirect('order-config')
+                process_temp = process_form.save(commit=False)
+                if process_temp.company==process_temp.branch.company:
+                    process_temp.save()
+                    return redirect('order-config')
 
     context={
     'payment_methods': payment_methods,
