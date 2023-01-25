@@ -1,5 +1,4 @@
 import datetime
-import logging
 
 from django.conf import settings
 
@@ -27,7 +26,6 @@ def order_create(request):
     
     if request.method == 'POST':
         order_form = Order_form(request.POST)
-        logging.warning(order_form,order_temp.branch)
         if order_form.is_valid():
             
             order = order_form.save(commit=False)
@@ -40,6 +38,8 @@ def order_create(request):
 
             settings.GLOBAL_COUNT+=1
             Engine.define_controler(order.id)
+
+            Engine.send_mail(order.id)
 
             return redirect('order-detail', order.id)
 

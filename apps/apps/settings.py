@@ -139,3 +139,22 @@ LOGIN_REDIRECT_URL = 'order-list'
 # counter variable
 GLOBAL_DAY = None
 GLOBAL_COUNT = None
+
+#Sending email
+#https://docs.djangoproject.com/fr/1.8/topics/email/
+
+MAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Host for sending email.
+EMAIL_HOST = 'smtp.gmail.com'
+ 
+# Port for sending email.
+EMAIL_PORT = 587
+ 
+# Optional SMTP authentication information for EMAIL_HOST.
+EMAIL_HOST_USER =  'app@mail.com'
+EMAIL_HOST_PASSWROD = 'password'
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_TO_EMAIL = EMAIL_HOST_USER
