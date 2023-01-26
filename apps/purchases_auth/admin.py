@@ -3,13 +3,13 @@ from django.contrib import admin
 from purchases_auth.models import Payment_method, Purchase_type, Process, Order
     
 class Payment_method_admin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'controler')
 
 class Purchase_type_admin(admin.ModelAdmin):
     list_display = ('name',)
 
 class Process_admin(admin.ModelAdmin):
-    list_display = ('name', 'company_threshold', 'branch_threshold', 'process_threshold')
+    list_display = ('name', 'company_threshold', 'branch_threshold', 'process_threshold', 'controler')
 
 class Order_admin(admin.ModelAdmin):
     list_display = ('id', 'order_id', 'date', 'controler_auth')

@@ -32,7 +32,8 @@
                             <td style="width:10px;padding:0;font-size:0;line-height:0;">&nbsp;</td>
                             <td style="width:100px;padding:0;vertical-align:middle; ">
                                 <!-- Title - Column 2 -->
-                                <img src="/Users/alexandregimeno/Documents/django_app/apps/images/logo_entreprise.png" alt="logo_entreprise" width="200" style="height:auto;display:block;" />
+                                <!-- <img src="/Users/alexandregimeno/Documents/django_app/apps/images/logo_entreprise.png" alt="logo_entreprise" width="200" style="height:auto;display:block;" /> -->
+                                <p>My Company</p>
                             </td>
                         </tr>
                     </table>
@@ -47,17 +48,17 @@
                                     <tr>
                                         <td style="width:200px;vertical-align:middle;">
                                             <!-- Raw 1 - Column 1 -->
-                                            N° d'AA : 
+                                            <p>N° d'AA :</p> 
                                         </td>
                                         <td style="width:10px;padding:0;font-size:0;line-height:0;">&nbsp;</td>
                                         <td style="width:250px;vertical-align:middle; text-align: right">
                                             <!-- Raw 1 - Column 2 -->
-                                            <p style="background: #ffffff">{{ order.id }}</p>
+                                            <p style="background: #ffffff">{{ order.order_id }}</p>
                                         </td>
                                         <td style="width:10px;padding:0px 10px 0px 0px;font-size:0;line-height:0;">&nbsp;</td>
                                         <td style="width:200px;vertical-align:middle;">
                                             <!-- Raw 1 - Column 3 -->
-                                            Date :
+                                            <p>Date :</p>
                                         </td>
                                         <td style="width:10px;padding:0;font-size:0;line-height:0;">&nbsp;</td>
                                         <td style="width:250px; vertical-align:middle; text-align: right">
@@ -201,13 +202,13 @@
                         <tr>
                             <td style="padding:30px 0px 30px 30px;width:75%; text-align: left;">
                                 See purchase authorization request :<br>
-                                <a href="http://www.twitter.com/">{{ order.id }}</a>
+                                <a href="http://127.0.0.1:8000/order/{{ order.id }}/">{{ order.order_id }}</a>
                             </td>
                             <td style="padding:10px 10px 10px 10px;width:12%; text-align: center;">
-                                <a href="http://www.twitter.com/" style="padding:5px 5px 5px 5px; background: #ff0000; color: #000000; border:3px solid #1B1464;">refuse</a>
+                                <a href="http://127.0.0.1:8000/order/{{ order.id }}/" style="padding:5px 5px 5px 5px; background: #ff0000; color: #000000; border:3px solid #1B1464;">refuse</a>
                             </td>
                             <td style="padding:10px 10px 10px 10px;width:12%; text-align: center;">
-                                <a href="http://www.twitter.com/" style="padding:5px 5px 5px 5px; background: #00ff00; color: #000000; border:3px solid #1B1464;">validate</a>
+                                <a href="http://127.0.0.1:8000/order/{{ order.id }}/" style="padding:5px 5px 5px 5px; background: #00ff00; color: #000000; border:3px solid #1B1464;">validate</a>
                             </td>
                         </tr>
                     </table>

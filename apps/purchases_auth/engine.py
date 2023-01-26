@@ -76,10 +76,10 @@ class Engine:
     def send_mail(id):
         order = Order.objects.get(id=id)
         
-        subject = 'New Order: ' + order.order_id
+        subject = 'New Order : ' + order.order_id
         
         html_template = 'order_auth_email.html'
-        context = {'order': order.order_id}
+        context = {'order': order}
         html_content = render_to_string(html_template, context)
         
         from_email = order.asker_login.email
@@ -101,3 +101,6 @@ class Engine:
             to_email_copy,)
 
         email.send()
+
+    def mail_verification():
+        pass
