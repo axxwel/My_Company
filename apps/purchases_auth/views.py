@@ -5,6 +5,12 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 
+#API REST django framework
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from purchases_auth.serializers import OrderSerializer
+
+#Models and forms
 from purchases_auth.models import Order, Payment_method, Purchase_type, Process
 from purchases_auth.forms import Order_form, Order_auth, PaymentMethodForm, PurchaseTypeForm, ProcessForm
 
@@ -108,3 +114,10 @@ def order_config(request):
     return render(request,
     'purchases_auth/order_config.html',
     context=context)
+
+class OrderAPIView(APIView):
+    
+    def get(self, *args, **kwargs):
+        order = Order.objects.all()
+        serializer = OrderSerializer(order, many=True)
+        return Response(serializer.data)

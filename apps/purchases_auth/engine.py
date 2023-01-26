@@ -84,23 +84,9 @@ class Engine:
         
         from_email = order.asker_login.email
         to_email = [order.controler_login.email,]
-
-        logging.warning("test_to_email_copy",
-            order.notified_controler.all(),)
-
         to_email_copy= [c.email for c in order.notified_controler.all()]
         
-
         email = EmailMessage(subject, html_content, from_email, to_email, bcc=to_email_copy)
         email.content_subtype = "html"
 
-        logging.warning("test_send_mail",
-            subject,
-            from_email,
-            to_email,
-            to_email_copy,)
-
         email.send()
-
-    def mail_verification():
-        pass

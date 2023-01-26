@@ -15,13 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 
 import authentication.views
 from purchases_auth import views
 
+
 urlpatterns = [
 #API REST
-    #path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/order/', views.OrderAPIView.as_view()),
 #Administration
     path('admin/', admin.site.urls),
 #Authentication
