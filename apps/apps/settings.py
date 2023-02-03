@@ -146,7 +146,7 @@ GLOBAL_COUNT = None
 
 
 # Host for sending email.
-EMAIL_HOST = 'smtp.phalippou-frayssinet.fr'
+EMAIL_HOST = ''
  
 # Port for sending email.
 EMAIL_PORT = 25
