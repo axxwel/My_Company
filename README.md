@@ -1,4 +1,4 @@
-Django App
+My_Company
 =
 python django applications
 
